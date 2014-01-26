@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 参数字典配置 -->
+<dict>
+	<!-- ORACLE对象锁状态 -->
+	<module table="SYSTEM_INFO">
+		<type code="0001" name="ORACLE对象锁状态" column="LOCKED_MODE">
+			<param value="0" content="NONE"/>	
+			<param value="1" content="NULL (空)"/>			
+			<param value="2" content="Row-S 行共享(SS)" remark="共享表锁"  />			
+			<param value="3" content="Row-X 行独占(SX)" remark="用于行的修改"  />
+			<param value="4" content="Share 共享锁(S)" remark="阻止其他DML操作" />
+			<param value="5" content="S/Row-X 共享行独占(SSX)" remark="阻止其他事务操作"  />
+			<param value="6" content="Exclusive 独占(X)" remark="独立访问使用"  />		
+		</type>
+	</module>
+	<!-- 系统配置 -->
+	<module table="SYSTEM_INFO">
+		<type code="1000" name="系统状态" column="STATUS">
+			<param value="1" content="正常"/>			
+			<param value="2" content="系统维护中" />			
+			<param value="9" content="首次运行" default="true" />
+		</type>
+	</module>	
+	<!-- 操作员 -->
+	<module table="OPERATOR">
+		<type code="1001" name="操作员类型" column="OP_TYPE">
+			<param value="1" content="系统操作员" default="true" />
+			<param value="2" content="业务操作员" />
+		</type>
+		<type code="1002" name="性别" column="SEX">
+			<param value="1" content="未知" default="true" />
+			<param value="2" content="男" />
+			<param value="3" content="女" />
+		</type>
+		<type code="1003" name="操作员状态" column="STATUS">
+			<param value="1" content="正常" default="true" />
+			<param value="2" content="注销" />
+			<param value="3" content="删除" />
+			<param value="4" content="锁定" />
+			<param value="9" content="不可更改" />
+		</type>
+	</module>
+	<!-- 角色 -->
+	<module table="ROLE">
+		<type code="1004" name="角色状态" column="STATUS">
+			<param value="1" content="正常" default="true" />			
+			<param value="2" content="删除" />			
+			<param value="9" content="不可更改" />
+		</type>
+	</module>	
+	<!-- 菜单 -->
+	<module table="MENU">
+		<type code="1005" name="菜单状态" column="STATUS">
+			<param value="1" content="正常" default="true" />			
+			<param value="2" content="屏蔽" />			
+			<param value="9" content="不可更改" />
+		</type>
+	</module>	
+	<!-- 参数类型 -->
+	<module table="DICT_PARAM_TYPE">
+		<type code="1006" name="参数类型状态" column="STATUS">
+			<param value="1" content="正常" />			
+			<param value="2" content="屏蔽" />			
+			<param value="9" content="系统" default="true"/>
+		</type>
+	</module>	
+	<!-- 参数 -->
+	<module table="DICT_PARAM">
+		<type code="1007" name="参数状态" column="STATUS">
+			<param value="1" content="正常" />			
+			<param value="2" content="屏蔽" />			
+			<param value="9" content="系统" default="true"/>
+		</type>
+	</module>	
+	
+	<!-- 公告 -->
+	<module table="AFFICHE">
+		<type code="1008" name="公告类型" column="TYPE">
+			<param value="1" content="公告" default="true"/>			
+			<param value="2" content="新闻" />	
+		</type>
+	</module>
+	<!-- 公告图标 -->
+	<module table="AFFICHE">
+		<type code="1009" name="公告图标" column="ICON">
+			<param value="iconNone" content="无" default="true"/>			
+			<param value="iconNew" content="新增"/>			
+			<param value="iconHot" content="热门"/>
+		</type>
+	</module>	
+	
+	<!-- FAQ类型 -->
+	<module table="FAQ">
+		<type code="1010" name="FAQ状态" column="STATUS">
+			<param value="1" content="草稿" default="true"/>	
+			<param value="2" content="已审阅"/>	
+			<param value="3" content="已发布"/>	
+			<param value="4" content="作废"/>	
+		</type>
+	</module>	
+	
+	<!-- IP限制类型 -->
+	<module table="IP_LIMIT">
+		<type code="1011" name="IP类型" column="IP_TYPE">
+			<param value="1" content="IP段" default="true"/>	
+			<param value="2" content="IP域"/>
+			<param value="3" content="单IP"/>	
+		</type>
+	</module>	
+
+	<!-- 文档类型 -->
+	<module table="DOCUMENT">
+		<type code="1012" name="文档属性" column="DOC_PROPERTY">
+			<param value="1" content="系统文档" default="true"/>	
+			<param value="2" content="个人文档"/>
+		</type>
+	</module>	
+	<!-- 文档状态 -->
+	<module table="DOCUMENT">
+		<type code="1013" name="开放状态" column="OPEN_STATUS">
+			<param value="1" content="开放文档" default="true"/>	
+			<param value="2" content="私有文档"/>
+		</type>
+	</module>
+	
+<!-- ******************************** PERSONAL ********************************  -->		
+	<!-- 站内信 -->
+	<module table="SHORT_MESSAGE">
+		<type code="2001" name="短信类型" column="TYPE">
+			<param value="1" content="系统" default="true"/>	
+			<param value="2" content="用户"/>
+		</type>
+		<type code="2002" name="发送标志" column="SEND_FLAG">				
+			<param value="1" content="未发送（草稿）" default="true"/>	
+			<param value="2" content="已发送"/>
+		</type>
+		<type code="2003" name="接收标志" column="RECEIVE_FLAG">				
+			<param value="1" content="未接收" default="true"/>	
+			<param value="2" content="已接收"/>
+		</type>
+	</module>
+
+<!-- ******************************** INVOICING ********************************  -->		
+	<!-- 产品 -->
+	<module table="PRODUCT">
+		<type code="5001" name="形状" column="SHARP">
+			<param value="ROD" content="圆棒" default="true"/>
+			<param value="BAR" content="方棒" />	
+			<param value="PLATE" content="板" />	
+			<param value="SHEET" content="薄板" />	
+			<param value="TUBE" content="管"/>	
+			<param value="HEX" content="六角"/>
+			<param value="OTHER" content="异型"/>
+		</type>
+		<type code="5002" name="材料类型" column="MATERIAL_TYPE">				
+			<param value="Aluminum" content="铝" default="true"/>	
+			<param value="Steel" content="钢"/>
+			<param value="C&amp;B" content="铜"/>
+			<param value="Titanium" content="钛"/>
+			<param value="Other" content="其他"/>
+		</type>		
+	</module>
+	
+	<!-- 库存 -->
+	<module table="INVENTORY">
+		<type code="5101" name="类型" column="TYPE">
+			<param value="FULL" content="整料" default="true"/>	
+			<param value="REM" content="余料" />
+		</type>
+		<type code="5102" name="表面状况" column="SURFACE_STATUS">				
+			<param value="Good" content="良好" default="true"/>	
+			<param value="Minor" content="轻度划伤"/>
+			<param value="Medium" content="中度划伤"/>
+			<param value="Major" content="严重划伤"/>
+		</type>			
+	</module>
+	
+	<!-- 出库 -->
+	<module table="INVENTORY_OUT">
+		<type code="5201" name="出库类型" column="OUT_TYPE">
+			<param value="ENTIRE" content="全部" default="true"/>	
+			<param value="LEN" content="按长度" />
+			<param value="WIDTH" content="按宽度" />
+			<param value="THICKNESS" content="按厚度" />
+		</type>		
+	</module>
+	
+	<!-- 库存告警 -->
+	<module table="INVENTORY_THRESHOLD">
+		<type code="5301" name="告警类型" column="TYPE">
+			<param value="WEIGHT" content="按重量" default="true"/>	
+			<param value="NUM" content="按数量" />
+		</type>		
+	</module>
+	
+	<!-- 订单 -->
+	<module table="BILL">
+		<type code="5401" name="订单状态" column="STATUS">
+			<param value="DRAFT" content="草案" default="true"/>	
+			<param value="MARKET_AUDIT" content="销售审核" />
+			<param value="PURCHASE_AUDIT" content="采购审核" />
+			<param value="PRODUCT_AUDIT" content="生产审核" />
+			<param value="END_AUDIT" content="总经理审核" />
+			<param value="ACKED" content="已确认" />
+			<param value="PRODUCING" content="生产中" />
+			<param value="DONE" content="完成" />
+		</type>		
+	</module>
+	
+	<!-- 订单详情 -->
+	<module table="BILL_DETAIL">
+		<type code="5501" name="订单状态" column="STATUS">
+			<param value="PURCHASING" content="采购中" default="true"/>	
+			<param value="PRODUCING" content="生产中" />
+			<param value="DELIVERY" content="运输中" />
+			<param value="PARTIALLY_DONE" content="部分完成" />
+			<param value="DONE" content="完成" />
+		</type>			
+	</module>
+	
+	<!-- 客户 -->
+	<module table="CUSTOMER">
+		<type code="6001" name="客户等级" column="RANK">
+			<param value="A" content="最重要客户" default="true"/>	
+			<param value="B" content="重要客户" />
+			<param value="C" content="普通客户" />
+		</type>		
+		<type code="6002" name="信用等级" column="CREDIT">
+			<param value="1" content="款到发货" default="true"/>	
+			<param value="2" content="月结30天" />
+			<param value="3" content="发货后7日内" />
+			<param value="4" content="发货后30日内" />
+			<param value="5" content="发货后60日内" />
+			<param value="6" content="其他" />
+		</type>		
+		<type code="6003" name="客户类型" column="SEGMENT">
+			<param value="1" content="经销商" default="true"/>	
+			<param value="2" content="机加工" />
+			<param value="3" content="模具" />
+			<param value="4" content="船舶" />
+			<param value="5" content="半导体" />
+			<param value="6" content="电子" />
+			<param value="7" content="航空" />
+			<param value="8" content="其他" />
+		</type>			
+	</module>
+	
+</dict>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+ 	<!-- 没有模块和权限，但是有菜单，只有超级管理员能看到 -->
+ 	<domain code="00" title="高级管理" packageName="system" parentPackageName="com.litt.cidp" isHide="true">
+		<module code="01" title="数据锁" descr="直接对数据库锁定对象进行管理" url="database/index.do" menuName="数据锁管理" modelName="SessionLock">
+			<func code="01" title="管理"/>			
+		</module>
+	</domain>
+	<domain code="01" title="Admin" packageName="system" parentPackageName="com.litt.cidp">		
+		<module code="01" title="System Settings" descr="配置系统运行参数" url="systemInfo/index.do" tableName="SYSTEM_INFO">
+			<func code="01" title="配置"/>			
+		</module>
+		<module id="OPERATOR_MANAGE" code="02" title="Operator" descr="操作员基本信息管理" url="operator/index.do"  menuName="Operator Manager" tableName="OPERATOR">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="注销/恢复"/>
+			<func code="04" title="查询"/>
+			<func code="05" title="修改密码" isPermission="false"/>
+			<func code="06" title="分配角色"/>
+			<func code="07" title="删除"/>
+			<func code="09" title="登录"/>
+			<func code="10" title="安全退出" isPermission="false"/>
+			<func code="11" title="导入"/>
+			<func code="12" title="导出"/>
+		</module>
+		<module id="ROLE_MANAGE" code="03" title="Role" descr="角色基本信息管理、角色权限分配" url="role/index.do" menuName="Role Manager" tableName="ROLE">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="注销/恢复"/>
+			<func code="04" title="查询"/>
+			<func code="05" title="分配权限"/>
+			<func code="07" title="删除"/>
+			<func code="11" title="导入"/>
+			<func code="12" title="导出"/>
+		</module>		
+		<module id="DICT_PARAM_MANAGE" code="05" title="参数" descr="系统参数字典管理" tableName="DICT_PARAM" isMenu="false">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>
+		<module id="DICT_PARAM_TYPE_MANAGE" code="06" title="Dictionary" descr="系统参数字典类型管理" url="dictParamType/index.do" menuName="Dictionary Manager" tableName="DICT_PARAM_TYPE" > 
+			<func code="02" title="修改"/>
+			<func code="04" title="查询"/>
+			<func code="05" title="新建参数"/>
+			<func code="06" title="修改参数"/>
+			<func code="07" title="删除参数"/>
+		</module>
+		<module id="OP_LOG_MANAGE" code="07" title="Operation Log" descr="操作日志查询" url="opLog/index.do" menuName="Operation Log" tableName="OP_LOG">
+			<func code="04" title="查询"/>			
+		</module>		
+		<module id="DEPARTMENT_MANAGE" code="08" title="Department" descr="部门基本信息管理" url="department/index.do" menuName="Department Manager" tableName="DEPARTMENT">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除/恢复"/>
+			<func code="04" title="查询"/>
+		</module>					
+		<module id="MENU_MANAGE" code="09" title="Menu" descr="菜单基本信息管理" url="menu/index.do" menuName="Menu Manager" tableName="MENU" isMenu="false">			
+			<func code="02" title="修改"/>
+			<func code="03" title="屏蔽/恢复"/>
+			<func code="04" title="查询"/>
+		</module>
+		<module id="CACHE_MANAGE" code="10" title="缓存" descr="系统缓存管理" url="cache/index.do" menuName="缓存管理" tableName="CACHE"  isMenu="false">
+			<func code="01" title="刷新缓存"/>			
+		</module>
+		<module id="MODULE_MANAGE" code="11" title="模块" descr="模块管理" url="module/index.do"  menuName="模块管理" tableName="MODULE"  isMenu="false">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>
+		<module id="FUNC_MANAGE" code="12" title="功能项" descr="功能项管理" url="func/index.do" menuName="功能项管理" tableName="FUNC"  isMenu="false">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>
+		<module id="PERMISSION_MANAGE" code="13" title="Permission" descr="权限管理" url="permission/index.do" menuName="Permission Manager" tableName="PERMISSION"  isMenu="false">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>	
+		<module id="IP_ACCESS_MANAGE" code="14" title="Access Authorization" descr="IP访问管理" url="ipAccessLimit/index.do" menuName="Access Authorization" tableName="IP_ACCESS_LIMIT">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>	
+		<module id="JOB_MANAGE" code="15" title="Job" descr="操作员职务管理" url="job/index.do" menuName="Job Manager" tableName="JOB">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除/恢复"/>
+			<func code="04" title="查询"/>
+		</module>	
+		<module id="ONLINE_OPERATOR_MANAGE" code="16" title="Online Operators" descr="在线操作员" url="onlineOperator/index.do" menuName="Online Operators" modelName="LoginVo">
+			<func code="01" title="发消息"/>
+			<func code="03" title="强制下线"/>
+			<func code="04" title="查询"/>
+		</module>		
+	</domain>
+	<!-- 
+	<domain code="02" title="系统辅助" packageName="assistant" parentPackageName="com.litt.cidp">
+		<module code="01" title="公告" descr="系统公告管理" url="affiche/index.do" menuName="公告管理" tableName="AFFICHE" >
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+			<func code="05" title="审核"/>
+			<func code="06" title="发布"/>
+		</module>
+		<module code="05" title="FAQ分类管理" descr="FAQ分类管理" url="faqCategory/index.do" menuName="FAQ分类管理" tableName="FAQ_CATEGORY" >
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>			
+		<module code="06" title="FAQ" descr="FAQ管理" url="faq/index.do" menuName="FAQ管理" tableName="FAQ" >
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+			<func code="05" title="审核"/>
+			<func code="06" title="发布"/>
+		</module>
+		<module code="07" title="站内搜索" descr="站内搜索" url="siteSearch/index.do" menuName="站内搜索" modelName="SiteSearch">			
+			<func code="04" title="查询"/>
+		</module>		
+	</domain>		
+	<domain code="03" title="个人门户" packageName="personal" parentPackageName="com.litt.cidp">
+		<module code="10" title="日程计划" descr="日程计划管理" url="calendar/index.do" menuName="日程计划" tableName="CALENDAR">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>
+		<module code="13" title="待办工单" descr="待办工单" url="task/unfinished.do" menuName="待办工单" tableName="TASK">
+			<func code="04" title="查询"/>
+		</module>
+		<module code="14" title="已办工单" descr="已办工单" url="task/finished.do" menuName="已办工单" tableName="TASK">
+			<func code="04" title="查询"/>
+		</module>
+	</domain>
+	<domain code="09" title="分析报表" packageName="report" parentPackageName="com.litt.cidp">
+		<module code="01" title="报表分类管理" descr="报表分类管理" url="reportCategory/index.do" menuName="报表分类管理" tableName="REPORT_CATEGORY">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>
+		<module code="02" title="报表管理" descr="报表管理" url="report/index.do" menuName="报表管理" tableName="REPORT">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>		
+	</domain>
+	 -->
+	<domain code="11" title="基础信息" packageName="invoicing" parentPackageName="com.litt.erp">
+		<module code="01" title="产品管理" descr="产品基础信息管理" url="product/index.do" tableName="PRODUCT">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>
+		<module code="02" title="库位管理" descr="仓库存放库位信息管理" url="location/index.do" tableName="LOCATION">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>	
+		<module code="03" title="供应商管理" descr="供应商信息管理" url="supplier/index.do" tableName="SUPPLIER">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>
+		<module code="04" title="客户管理" descr="客户信息管理" url="customer/index.do" tableName="CUSTOMER">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>		
+	</domain>	
+	<domain code="12" title="库存管理" packageName="invoicing" parentPackageName="com.litt.erp">
+		<module code="01" title="库存查询" descr="当前库存信息查询" url="inventory/index.do" tableName="INVENTORY">			
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>
+		<module code="02" title="入库" descr="采购产品入库" url="inventoryIn/index.do" tableName="INVENTORY_IN">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+			<func code="05" title="审核"/>
+		</module>	
+		<module code="03" title="出库" descr="销售产品出库" url="inventoryOut/index.do" tableName="INVENTORY_OUT">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+			<func code="05" title="审核"/>
+		</module>		
+	</domain>
+	<domain code="13" title="销售管理" packageName="invoicing" parentPackageName="com.litt.erp">
+		<module code="01" title="订单管理" descr="销售订单管理" url="bill/index.do" tableName="BILL">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>		
+	</domain>
+		
+</config>

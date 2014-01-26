@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 参数字典配置 -->
+<dict>
+	<!-- ORACLE对象锁状态 -->
+	<module table="SYSTEM_INFO">
+		<type code="0001" name="ORACLE Object Lock Status" column="LOCKED_MODE">
+			<param value="0" content="NONE"/>	
+			<param value="1" content="NULL (null)"/>			
+			<param value="2" content="Row-S (RS)" remark="Row Share"  />			
+			<param value="3" content="Row-X (RX)" remark="Row Exclusive"  />
+			<param value="4" content="Share (S)" remark="Block othe DML operation" />
+			<param value="5" content="S/Row-X (SSX)" remark="Block other tranction operation"  />
+			<param value="6" content="Exclusive (X)" remark="Independent row access"  />		
+		</type>
+	</module>
+	<!-- 系统配置 -->
+	<module table="SYSTEM_INFO">
+		<type code="1000" name="Status" column="STATUS">
+			<param value="1" content="Normal"/>			
+			<param value="2" content="Maintaining" />			
+			<param value="9" content="FirstRun" default="true" />
+		</type>
+	</module>	
+	<!-- 操作员 -->
+	<module table="OPERATOR">
+		<type code="1001" name="Type" column="OP_TYPE">
+			<param value="1" content="System Operator" default="true" />
+			<param value="2" content="Business Operator" />
+		</type>
+		<type code="1002" name="Sex" column="SEX">
+			<param value="1" content="Unknown" default="true" />
+			<param value="2" content="Male" />
+			<param value="3" content="Female" />
+		</type>
+		<type code="1003" name="Operator Status" column="STATUS">
+			<param value="1" content="Normal" default="true" />
+			<param value="2" content="Log Off" />
+			<param value="3" content="Delete" />
+			<param value="4" content="Lock" />
+			<param value="9" content="Final" />
+		</type>
+	</module>
+	<!-- 角色 -->
+	<module table="ROLE">
+		<type code="1004" name="Role Status" column="STATUS">
+			<param value="1" content="Normal" default="true" />			
+			<param value="2" content="Delete" />			
+			<param value="9" content="Final" />
+		</type>
+	</module>	
+	<!-- 菜单 -->
+	<module table="MENU">
+		<type code="1005" name="Menu Status" column="STATUS">
+			<param value="1" content="Normal" default="true" />			
+			<param value="2" content="Shield" />			
+			<param value="9" content="Final" />
+		</type>
+	</module>	
+	<!-- 参数类型 -->
+	<module table="DICT_PARAM_TYPE">
+		<type code="1006" name="Parameter Type Status" column="STATUS">
+			<param value="1" content="Normal" />			
+			<param value="2" content="Shield" />			
+			<param value="9" content="System" default="true"/>
+		</type>
+	</module>	
+	<!-- 参数 -->
+	<module table="DICT_PARAM">
+		<type code="1007" name="Parameter Status" column="STATUS">
+			<param value="1" content="Normal" />			
+			<param value="2" content="Shield" />			
+			<param value="9" content="System" default="true"/>
+		</type>
+	</module>	
+	
+	<!-- 公告 -->
+	<module table="AFFICHE">
+		<type code="1008" name="Announcement Type" column="TYPE">
+			<param value="1" content="Announcement" default="true"/>			
+			<param value="2" content="News" />	
+		</type>
+	</module>
+	<!-- 公告图标 -->
+	<module table="AFFICHE">
+		<type code="1009" name="Anouncement" column="ICON">
+			<param value="iconNone" content="None" default="true"/>			
+			<param value="iconNew" content="New"/>			
+			<param value="iconHot" content="Hot"/>
+		</type>
+	</module>	
+	
+	<!-- FAQ类型 -->
+	<module table="FAQ">
+		<type code="1010" name="FAQ Status" column="STATUS">
+			<param value="1" content="Draft" default="true"/>	
+			<param value="2" content="Already Review"/>	
+			<param value="3" content="Published"/>	
+			<param value="4" content="Cancel"/>	
+		</type>
+	</module>	
+	
+	<!-- IP限制类型 -->
+	<module table="IP_LIMIT">
+		<type code="1011" name="IP Type" column="IP_TYPE">
+			<param value="1" content="IP Range" default="true"/>	
+			<param value="2" content="IP Domain"/>
+			<param value="3" content="Single IP"/>	
+		</type>
+	</module>	
+
+	<!-- 文档类型 -->
+	<module table="DOCUMENT">
+		<type code="1012" name="Document Properity" column="DOC_PROPERTY">
+			<param value="1" content="System Document " default="true"/>	
+			<param value="2" content="Personal Document"/>
+		</type>
+	</module>	
+	<!-- 文档状态 -->
+	<module table="DOCUMENT">
+		<type code="1013" name="Open Status" column="OPEN_STATUS">
+			<param value="1" content="Share Document" default="true"/>	
+			<param value="2" content="Personal Document"/>
+		</type>
+	</module>
+	
+<!-- ******************************** PERSONAL ********************************  -->		
+	<!-- 站内信 -->
+	<module table="SHORT_MESSAGE">
+		<type code="2001" name="Message Type" column="TYPE">
+			<param value="1" content="System" default="true"/>	
+			<param value="2" content="Costumer"/>
+		</type>
+		<type code="2002" name="Send Flag" column="SEND_FLAG">				
+			<param value="1" content="Not Sent(Draft)" default="true"/>	
+			<param value="2" content="Sent"/>
+		</type>
+		<type code="2003" name="Receive Flag" column="RECEIVE_FLAG">				
+			<param value="1" content="Not Received" default="true"/>	
+			<param value="2" content="Received"/>
+		</type>
+	</module>
+	
+<!-- ******************************** NMS ********************************  -->		
+
+	<module table="">
+		<type code="4000" name="System Object ID" column="sysObjectID">
+			<param value="1.3.6.1.4.1.311.1.1.3.1.1" content="F5"/>	
+		</type>
+		
+		<type code="4001" name="Network Element Type" column="TYPE">
+			<param value="1" content="Server" default="true"/>	
+			<param value="2" content="Switch"/>
+			<param value="3" content="Router"/>
+			<param value="4" content="Firewall"/>
+			<param value="10" content="VM"/>
+			<param value="11" content="vSwitch"/>
+			<param value="12" content="F5"/>
+			<param value="13" content="Storage"/>
+		</type>	
+		
+		<type code="4002" name="Severity" column="SEVERITY">
+			<param value="1" content="CRITICAL" default="true"/>	
+			<param value="2" content="MAJOR"/>
+			<param value="3" content="MINOR"/>
+			<param value="4" content="WARNING"/>
+			<param value="5" content="NORMAL"/>
+			<param value="6" content="CLEARED"/>
+			<param value="7" content="INDETERMINATE"/>			
+		</type>
+		<type code="4003" name="Priority" column="PRIORITY">
+			<param value="1" content="Warning" default="true"/>	
+			<param value="2" content="Minor"/>
+			<param value="3" content="Major"/>
+			<param value="4" content="Critial"/>
+		</type>	
+	</module>	
+
+	<module table="NODE">		
+		<type code="4102" name="SNMP Version" column="SNMP_VERSION">				
+			<param value="0" content="v1" default="true"/>	
+			<param value="1" content="v2c"/>
+			<param value="2" content="v3"/>
+		</type>
+		<type code="4103" name="Security Level" column="SECURITY_LEVEL">				
+			<param value="1" content="noAuthNoPriv" default="true"/>	
+			<param value="2" content="authNoPriv"/>
+			<param value="3" content="authPriv"/>
+		</type>
+	</module>	
+	
+	<module table="INTERFACE">
+		<type code="4201" name="Interface Type" column="IF_TYPE">
+			<param value="1" content="other"/>				
+			<param value="6" content="ethernetCsmacd"/>	
+			<param value="7" content="iso88023Csmacd" descr="Deprecated via RFC3635. ethernetCsmacd (6) should be used instead"/>	
+			<param value="24" content="softwareLoopback"/>			
+			<param value="26" content="ethernet3Mbit"/>
+			<param value="37" content="atm"/>	
+			<param value="39" content="sonet"/>	
+			<param value="48" content="modem"/>	
+			<param value="55" content="ieee80212"/>	
+			<param value="63" content="isdn"/>	
+			<param value="69" content="fastEtherFX"/>	
+			<param value="70" content="channel"/>	
+			<param value="71" content="ieee80211"/>	
+			<param value="78" content="ipSwitch"/>	
+			<param value="125" content="fast"/>	
+			<param value="126" content="ip"/>	
+			<param value="131" content="tunnel"/>	
+			<param value="135" content="l2vlan"/>	
+			<param value="136" content="l3ipvlan"/>		
+			<param value="137" content="l3ipxvlan"/>
+			<param value="138" content="digitalPowerline"/>
+			<param value="142" content="ipForward"/>
+			<param value="144" content="ieee1394"/>
+			<param value="160" content="usb"/>
+			<param value="161" content="IEEE 802.3ad Link Aggregate"/>
+			<param value="202" content="virtualTg"/>
+			<param value="209" content="bridge"/>
+			<param value="222" content="ciscoISLvlan"/>
+		</type>
+		<type code="4202" name="Interface Admin Status" column="IF_ADMIN_STATUS">
+			<param value="1" content="up"/>				
+			<param value="2" content="down"/>				
+			<param value="3" content="testing"/>
+			<param value="65536" content="block"/>
+			<param value="65537" content="unblock"/>
+			<param value="65538" content="reset"/>
+			<param value="65539" content="localloopback"/>
+			<param value="65540" content="remoteloopback"/>
+			<param value="65541" content="payloadloopback"/>
+			<param value="65542" content="unloopback"/>
+			<param value="65543" content="linkrxblock"/>
+			<param value="65544" content="linktxblock"/>
+			<param value="65545" content="linkallblock"/>
+			<param value="65546" content="linkrxunblock"/>
+			<param value="65547" content="linktxunblock"/>
+			<param value="65548" content="linkallunblock"/>   
+		</type>
+		<type code="4203" name="Interface Operation Status" column="IF_OPER_STATUS">
+			<param value="1" content="up"/>				
+			<param value="2" content="down"/>				
+			<param value="3" content="testing"/>
+			<param value="4" content="unknown"/>
+			<param value="5" content="dormant"/>
+			<param value="6" content="notPresent"/>
+			<param value="7" content="lowerLayerDown"/>
+			<param value="65536" content="activing"/>
+			<param value="65537" content="block"/>
+			<param value="65538" content="config"/>
+			<param value="65539" content="localloopback"/>
+			<param value="65540" content="remoteloopback"/>
+			<param value="65541" content="payloadloopback"/>
+			<param value="65542" content="blockandlocalloopback"/>
+			<param value="65543" content="blockandremoteloopback"/>
+			<param value="65544" content="blockandpayloadloopback"/>
+			<param value="65545" content="linkrxblock"/>
+			<param value="65546" content="linktxblock"/>
+			<param value="65547" content="linkallblock"/>
+			<param value="65548" content="fault"/>   
+			<param value="65549" content="unconfig"/>   
+			<param value="65550" content="empty"/>   
+		</type>
+	</module>
+	
+	<module table="RESOURCE_INDICATOR">
+		<type code="4301" name="Resource Type" column="RESOURCE_TYPE">
+			<param value="1" content="Host"/>				
+			<param value="2" content="Switch"/>
+			<param value="3" content="Router"/>		
+		</type>			
+		<type code="4302" name="Type" column="TYPE">
+			<param value="1" content="Availability"/>				
+			<param value="2" content="Performance"/>	
+			<param value="3" content="Configuration"/>	
+			<param value="4" content="Information"/>	
+		</type>	
+		<type code="4303" name="Value Type" column="VALUE_TYPE">
+			<param value="1" content="int"/>				
+			<param value="2" content="long"/>	
+			<param value="3" content="boolean"/>	
+			<param value="4" content="float"/>
+			<param value="5" content="date"/>
+			<param value="6" content="string"/>	
+		</type>
+		<type code="4304" name="Unit" column="UNIT">					
+			<param value="1" content="%"/>				
+			<param value="2" content="count"/>	
+			<param value="3" content="times"/>	
+			<param value="4" content="bytes"/>
+			<param value="5" content="kbytes"/>
+			<param value="6" content="mbytes"/>
+			<param value="7" content="bits"/>
+			<param value="8" content="kbits"/>	
+			<param value="9" content="bits/sec"/>
+			<param value="10" content="kbits/sec"/>
+			<param value="11" content="mbytes/sec"/>
+		</type>			
+	</module>
+	
+	<module table="REMOTE_ACCESS">
+		<type code="4401" name="Status" column="STATUS">
+			<param value="1" content="valid" default="true"/>	
+			<param value="2" content="invalid"/>
+			<param value="3" content="forbidden"/>
+		</type>		
+	</module>
+	
+	<module table="EVENT_DICT">		
+		<type code="4501" name="Event Type" column="TYPE">
+			<param value="1" content="Fault" default="true"/>
+			<param value="2" content="Fault Recovered"/>
+			<param value="3" content="Perf Threshold Exceeded"/>
+			<param value="4" content="Perf Threshold Rearmed"/>				
+			<param value="5" content="State Changed"/>
+			<param value="6" content="Conf Changed"/>
+			<param value="7" content="Info Changed"/>		
+			<param value="9" content="Other"/>
+			<param value="99" content="System"/>
+		</type>
+		<type code="4502" name="Event Source" column="SOURCE">
+			<param value="1" content="Web" default="true"/>	
+			<param value="2" content="Discovery"/>
+			<param value="3" content="Caps"/>
+			<param value="4" content="Collector"/>
+			<param value="5" content="Threshold"/>
+			<param value="6" content="Trap"/>
+			<param value="7" content="Script"/>
+		</type>		
+	</module>
+	
+	<module table="ALARM">		
+		<type code="4603" name="Status" column="STATUS">
+			<param value="1" content="Produce" default="true"/>	
+			<param value="2" content="Acked"/>
+			<param value="3" content="Accepted"/>
+			<param value="4" content="Ne Report Cleaned"/>
+			<param value="5" content="Time Cleaned"/>
+			<param value="6" content="Manual Cleaned"/>
+			<param value="7" content="System Cleaned"/>
+		</type>
+	</module>
+	
+	<module table="NOTIFY_USER">		
+		<type code="4701" name="Notify Type" column="NOTIFY_TYPE">
+			<param value="1" content="UI" default="true"/>	
+			<param value="2" content="Email"/>
+			<param value="3" content="SMS"/>
+		</type>
+	</module>
+	
+	<module table="NODE_DEVICE">		
+		<type code="4801" name="Device Type" column="DEVICE_TYPE">		
+			<param value="1" content="Other" default="true"/>
+			<param value="2" content="Unknown"/>
+			<param value="3" content="Processor"/>
+			<param value="4" content="Network"/>
+			<param value="5" content="Printer"/>
+			<param value="6" content="DiskStorage"/>
+			<param value="10" content="Video"/>
+			<param value="11" content="Audio"/>
+			<param value="12" content="Coprocessor"/>
+			<param value="13" content="Keyboard"/>
+			<param value="14" content="Modem"/>
+			<param value="15" content="ParallePort"/>
+			<param value="16" content="Pointing"/>
+			<param value="17" content="SerialPort"/>
+			<param value="18" content="Tape"/>
+			<param value="19" content="Clock"/>
+			<param value="20" content="VolatileMemory"/>
+			<param value="21" content="NonVolatileMemory"/>		
+		</type>
+		<type code="4802" name="Device Status" column="DEVICE_STATUS">				
+			<param value="1" content="unknown" default="true"/>	
+			<param value="2" content="running"/>
+			<param value="3" content="warning"/>
+			<param value="3" content="testing"/>
+			<param value="3" content="down"/>
+		</type>
+	</module>
+	
+	<module table="STORAGE">		
+		<type code="4901" name="STATUS" column="STATUS">		
+			<param value="1" content="online" default="true"/>
+			<param value="2" content="online(warning)"/>
+			<param value="3" content="offline"/>			
+		</type>		
+	</module>	
+	
+	<!-- ******************************** Security ********************************  -->		
+	<module table="NETWORK_PERMISSION">
+		<type code="5201" name="Item Type" column="ITEM_TYPE">
+			<param value="1" content="IP Address" default="true"/>	
+			<param value="2" content="MAC"/>
+			<param value="3" content="User"/>			
+		</type>
+		<type code="5202" name="Target Type" column="TARGET_TYPE">
+			<param value="1" content="IP Address" default="true"/>	
+			<param value="2" content="IP Range"/>
+			<param value="3" content="Subnetwork"/>			
+		</type>	
+		<type code="5203" name="Auth Type" column="AUTH_TYPE">
+			<param value="1" content="Allow" default="true"/>	
+			<param value="2" content="Allow Only"/>
+			<param value="3" content="Not Allow"/>			
+		</type>	
+	</module>
+	
+	<!-- ******************************** Application ********************************  -->		
+	<module table="APP">
+		<type code="6001" name="Action Type" column="ACTION_TYPE">
+			<param value="1" content="Deploy" default="true"/>
+			<param value="2" content="Startup"/>
+			<param value="3" content="Stop"/>
+			<param value="4" content="Undeploy"/>
+			<param value="5" content="Suspend"/>
+			<param value="6" content="Resume"/>
+			<param value="7" content="Migrate"/>
+			<param value="8" content="Define"/>	
+			<param value="9" content="Undefine"/>						
+		</type>
+		<type code="6002" name="Status" column="STATUS">
+			<param value="1" content="runnable" default="true"/>
+			<param value="2" content="running"/>
+			<param value="3" content="suspended"/>
+			<param value="4" content="invalid"/>						
+		</type>		
+	</module>
+	
+	<!-- ******************************** Policy ********************************  -->		
+	<module table="POLICY">
+		<type code="8001" name="Target Type" column="TARGET_TYPE">
+			<param value="1" content="Host" default="true"/>
+			<param value="2" content="Application"/>
+			<param value="3" content="User"/>
+			<param value="4" content="Switch"/>
+			<param value="5" content="Router"/>
+			<param value="6" content="Firewall"/>
+			<param value="7" content="DomainController"/>
+			<param value="8" content="LoadBalancer"/>
+			<param value="9" content="UPS"/>
+			<param value="10" content="Printer"/>
+			<param value="11" content="VirtualDevice"/>
+		</type>
+		<type code="8002" name="Action" column="ACTION">
+			<param value="1" content="Alarm" default="true"/>
+			<param value="2" content="Kill"/>
+			<param value="3" content="Restart"/>
+			<param value="4" content="Start"/>
+			<param value="5" content="Migrate"/>
+			<param value="6" content="Schedule"/>
+			<param value="7" content="Suspend"/>						
+		</type>			
+		<type code="8003" name="Host Item" column="ITEM_HOST">
+			<param value="1" content="CPU_RATE" default="true"/>
+			<param value="2" content="MEM_RATE"/>
+			<param value="3" content="DISK_QUOTA"/>
+			<param value="4" content="NETWORK_RX"/>
+			<param value="5" content="NETWORK_TX"/>
+			<param value="100" content="CACHE_MISSED"/>
+			<param value="101" content="CONTEXT_SWITCH"/>	
+			<param value="102" content="PAGE_FAULT"/>	
+			<param value="103" content="BRANCH_MISSES"/>	
+			<param value="104" content="CPU_MIGRATIONS"/>	
+			<param value="105" content="ALIGMENT_FAULTS"/>
+			<param value="106" content="EMULATION_FAULTS"/>	
+			<param value="107" content="CPI"/>	
+			<param value="108" content="LDST"/>	
+			<param value="109" content="RESST"/>	
+			<param value="110" content="BRANCH"/>	
+			<param value="111" content="BRMISS"/>
+			<param value="112" content="L2_CACHE_MISSES"/>	
+			<param value="113" content="BUS_REATE"/>	
+			<param value="114" content="BUS_DATA"/>	
+			<param value="115" content="BNR"/>	
+			<param value="116" content="SIMD"/>	
+			<param value="118" content="EFFECTIVE_INSTR"/>
+			<param value="119" content="PIPELINEBLOCK"/>
+			<param value="120" content="SYSTEM_CALL_NUM"/>								
+		</type>		
+		
+		<type code="8004" name="App Item" column="ITEM_APP">
+			<param value="1" content="CPU_RATE" default="true"/>
+			<param value="2" content="MEM_RATE"/>
+			<param value="3" content="DISK_QUOTA"/>
+			<param value="4" content="NETWORK_RX"/>
+			<param value="5" content="NETWORK_TX"/>
+		</type>		
+	</module>
+	
+</dict>

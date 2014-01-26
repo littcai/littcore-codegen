@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+ 	<!-- 没有模块和权限，但是有菜单，只有超级管理员能看到 -->
+ 	<domain code="00" title="高级管理" packageName="system" parentPackageName="com.litt.cidp" isHide="true">
+		<module code="01" name="DB_CONF" title="数据锁" descr="直接对数据库锁定对象进行管理" url="database/index.do" menuName="数据锁管理" modelName="SessionLock">
+			<func code="01" title="Config"/>			
+		</module>
+	</domain>
+	<domain code="01" title="Admin" packageName="system" parentPackageName="com.litt.cidp" descr="Manage the system and user information.">		
+		<module code="01" name="SYSTEM_CONF" title="System Settings" descr="Manage the system settings include basic,access,email,file upload information." url="systemInfo/index.do" tableName="SYSTEM_INFO">
+			<func code="01" title="config"/>			
+		</module>
+		<module code="02" id="OPERATOR_MANAGE" title="Operator" descr="Manage the users with different privileges." url="operator/index.do"  menuName="Operator Manager" tableName="OPERATOR">
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Log off/Restore"/>
+			<func code="04" title="Query"/>
+			<func code="05" title="Change Password" isPermission="false"/>
+			<func code="06" title="Edit Roles"/>
+			<func code="07" title="Delete"/>
+			<func code="09" title="Login"/>
+			<func code="10" title="Logout" isPermission="false"/>
+			<func code="11" title="Import"/>
+			<func code="12" title="Export"/>
+		</module>
+		<module code="03" name="ROLE_MANAGE" title="Role" descr="Manage the roles with different privileges." url="role/index.do" menuName="Role Manager" tableName="ROLE">
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Log off/Restore"/>
+			<func code="04" title="Query"/>
+			<func code="05" title="Edit Privileges"/>
+			<func code="07" title="Delete"/>
+			<func code="11" title="Import"/>
+			<func code="12" title="Export"/>
+		</module>		
+		<module code="05" name="DICT_PARAM_MANAGE" title="Dictionary Detail" descr="系统参数字典管理" tableName="DICT_PARAM" isMenu="false" isHide="true">
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Delete"/>
+			<func code="04" title="Query"/>
+		</module>
+		<module code="06" name="DICT_PARAM_TYPE_MANAGE" title="Dictionary" descr="Manage the name of parameters that used in system as required." url="dictParamType/index.do" menuName="Dictionary Manager" tableName="DICT_PARAM_TYPE" isHide="true"> 
+			<func code="02" title="Edit"/>
+			<func code="04" title="Query"/>
+			<func code="05" title="Add Param"/>
+			<func code="06" title="Edit Param"/>
+			<func code="07" title="Delete Param"/>
+		</module>
+		<module code="07" name="OP_LOG_MANAGE" title="Operation Log" descr="Record all user''s operation." url="opLog/index.do" menuName="Operation Log" tableName="OP_LOG">
+			<func code="04" title="Query"/>			
+		</module>		
+		<module code="08" name="DEPARTMENT_MANAGE" title="Department" descr="Manage the departments as required." url="department/index.do" menuName="Department Manager" tableName="DEPARTMENT">
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Shield/Restore"/>
+			<func code="04" title="Query"/>
+		</module>					
+		<module code="09" name="MENU_MANAGE"  title="Menu" descr="菜单基本信息管理" url="menu/index.do" menuName="Menu Manager" tableName="MENU" isMenu="false" isHide="true">			
+			<func code="02" title="Edit"/>
+			<func code="03" title="Shield/Restore"/>
+			<func code="04" title="Query"/>
+		</module>
+		<module code="10" name="CACHE_MANAGE" title="Cache" descr="系统缓存管理" url="cache/index.do" menuName="缓存管理" tableName="CACHE"  isMenu="false" isHide="true">
+			<func code="01" title="Flush"/>			
+		</module>
+		<module code="11" name="MODULE_MANAGE"  title="Module" descr="模块管理" url="module/index.do"  menuName="模块管理" tableName="MODULE"  isMenu="false" isHide="true">
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Delete"/>
+			<func code="04" title="Query"/>
+		</module>
+		<module code="12" name="FUNC_MANAGE" title="Function" descr="功能项管理" url="func/index.do" menuName="功能项管理" tableName="FUNC"  isMenu="false" isHide="true">
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Delete"/>
+			<func code="04" title="Query"/>
+		</module>
+		<module code="13" name="PERMISSION_MANAGE" title="Permission" descr="权限管理" url="permission/index.do" menuName="Permission Manager" tableName="PERMISSION" isMenu="false" isHide="true">
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Delete"/>
+			<func code="04" title="Query"/>
+		</module>	
+		<module code="14" name="IP_ACCESS_MANAGE" title="Access Authorization" descr="Use IP range to control network access." url="ipAccessLimit/index.do" menuName="Access Authorization" tableName="IP_ACCESS_LIMIT">
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Delete"/>
+			<func code="04" title="Query"/>
+		</module>	
+		<module code="15" name="JOB_MANAGE" title="Job" descr="Manage the jobs as required." url="job/index.do" menuName="Job Manager" tableName="JOB">
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Shield/Restore"/>
+			<func code="04" title="Query"/>
+		</module>	
+		<module code="16" name="ONLINE_OPERATOR_MANAGE" title="Online Operators" descr="Display and manage the logined operators." url="onlineOperator/index.do" menuName="Online Operators" modelName="LoginVo">
+			<func code="01" title="发消息"/>
+			<func code="03" title="Force Offline"/>
+			<func code="04" title="Query"/>
+		</module>
+		<module code="17" name="LICENSE_MANAGE" title="License Manager" descr="Manage license." url="license/index.do" menuName="License" modelName="License">
+			<func code="01" title="Conf"/>
+			<func code="04" title="Query"/>
+		</module>		
+	</domain>
+	<!-- 
+	<domain code="02" title="系统辅助" packageName="assistant" parentPackageName="com.litt.cidp">
+		<module code="01" title="公告" descr="系统公告管理" url="affiche/index.do" menuName="公告管理" tableName="AFFICHE" >
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Delete"/>
+			<func code="04" title="Query"/>
+			<func code="05" title="Check"/>
+			<func code="06" title="Publish"/>
+		</module>
+		<module code="05" title="FAQ分类管理" descr="FAQ分类管理" url="faqCategory/index.do" menuName="FAQ分类管理" tableName="FAQ_CATEGORY" >
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Delete"/>
+			<func code="04" title="Query"/>
+		</module>			
+		<module code="06" title="FAQ" descr="FAQ管理" url="faq/index.do" menuName="FAQ管理" tableName="FAQ" >
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Delete"/>
+			<func code="04" title="Query"/>
+			<func code="05" title="Check"/>
+			<func code="06" title="Publish"/>
+		</module>
+		<module code="07" title="站内搜索" descr="站内搜索" url="siteSearch/index.do" menuName="站内搜索" modelName="SiteSearch">			
+			<func code="04" title="Query"/>
+		</module>		
+	</domain>		
+	<domain code="03" title="个人门户" packageName="personal" parentPackageName="com.litt.cidp">
+		<module code="10" title="日程计划" descr="日程计划管理" url="calendar/index.do" menuName="日程计划" tableName="CALENDAR">
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Delete"/>
+			<func code="04" title="Query"/>
+		</module>
+		<module code="13" title="待办工单" descr="待办工单" url="task/unfinished.do" menuName="待办工单" tableName="TASK">
+			<func code="04" title="Query"/>
+		</module>
+		<module code="14" title="已办工单" descr="已办工单" url="task/finished.do" menuName="已办工单" tableName="TASK">
+			<func code="04" title="Query"/>
+		</module>
+	</domain>
+	<domain code="09" title="分析报表" packageName="report" parentPackageName="com.litt.cidp">
+		<module code="01" title="报表分类管理" descr="报表分类管理" url="reportCategory/index.do" menuName="报表分类管理" tableName="REPORT_CATEGORY">
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Delete"/>
+			<func code="04" title="Query"/>
+		</module>
+		<module code="02" title="报表管理" descr="报表管理" url="report/index.do" menuName="报表管理" tableName="REPORT">
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Delete"/>
+			<func code="04" title="Query"/>
+		</module>		
+	</domain>
+	 -->
+	<domain code="11" title="Network" packageName="network" parentPackageName="com.transoft.nms" descr="You can discover all the network elements in a specific IP range and can view the physical topology and application topology which displayed the connections between the actual devices and the applications.">
+		<module code="01" id="DISCOVERY" title="Discovery" descr="You can discover all the network elements on a network by specifying the start and end IP." url="discovery/index.do" tableName="DISCOVERY">
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Delete"/>
+			<func code="04" title="Query"/>
+		</module>
+		<domain code="02" title="Topology" packageName="network" descr="Display different kinds of topology.">
+			<module code="02" name="PHYSICAL_TOPOLOGY" title="Physical Network" descr="Display all the network elements and the connections between them on a network." url="topology/physical.do" tableName="TOPO_VIEW">			
+				<func code="04" title="Query"/>
+			</module>	
+			<module code="03" name="APP_TOPOLOGY" title="Deployed Application Network" descr="Display the resource which used in the application and the connections between them." url="topology/application.do" tableName="TOPO_VIEW">			
+				<func code="04" title="Query"/>
+			</module>	
+			<module  code="04" name="GLOBAL_TOPOLOGY" title="Put it together" descr="Display all the network devices and the applicatons on them." url="topology/network.do" tableName="TOPO_VIEW">			
+				<func code="04" title="Query"/>
+			</module>		
+		</domain>
+		<module code="03" name="NODE_MANAGE" title="Physical Devices" descr="Display the nodes on a network and can manage them as required." url="node/index.do" tableName="NODE">
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Delete"/>
+			<func code="04" title="Query"/>
+			<func code="05" title="Monitor"/>
+		</module>					
+	</domain>		
+	<domain code="13" title="Assets" packageName="network" parentPackageName="com.transoft.nms" descr="Manage the physical and virtual assets.">
+		<domain code="01" title="Physical Assets" descr="Display the hosts,switchs,routes,storages which actually exist on a network,and you can manage them as required." packageName="network">				
+			<module code="01" title="Host" descr="Display the hosts on a network,and you can view the software and hardware details in them." url="asset/listHost.do" tableName="NODE">
+				<func code="04" title="Query"/>
+			</module>
+			<module code="02" title="Network" descr="Display the switchs and routes on a network,and you can view the interface infomation in them." url="asset/listNetwork.do" tableName="NODE">
+				<func code="04" title="Query"/>
+			</module>
+			<module code="03" title="Storage" descr="Display the storages on a network,and you can view the information of them." url="asset/listStorage.do" tableName="STORAGE">
+				<func code="04" title="Query"/>
+			</module>
+		</domain>
+		<domain code="02" title="Virtual Assets" packageName="network" descr="Manage all the virual assets include virtual hosts,virtual switchs ,virtual routes and virtual storage.">				
+			<module code="01" title="v-host" url="asset/listVirtualServer.do" tableName="VirtualServer" descr="You can view all the virtual servers.">
+				<func code="04" title="Query"/>
+			</module>
+			<module code="02" title="v-network" url="asset/listVnetwork.do" tableName="VNETWORK" descr="You can view all the information of virtual network which divided by vlan.">
+				<func code="04" title="Query"/>
+			</module>
+			<module code="03" title="v-switch" url="asset/listVswitch.do" tableName="VSWITCH" descr="You can view all the virtual switchs on a network.">
+				<func code="04" title="Query"/>
+			</module>
+			<module code="04" title="v-storage" url="asset/listVstorage.do" tableName="VSTORAGE" descr="You can view all the virtual storages on a network.">
+				<func code="04" title="Query"/>
+			</module>
+		</domain>					
+	</domain>		
+	<domain code="14" title="Fault" packageName="network" parentPackageName="com.transoft.nms" descr="You can configure the threshold of performance and manage the active and history alarm.">
+		
+		<module code="02" title="Active Alarms" descr="Displaying the active alarms and you can clean or ack them." url="alarm/index.do" tableName="ALARM">
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Delete"/>
+			<func code="04" title="Query"/>
+		</module>
+		<module code="03" title="Alarm History" descr="Displaying the history alarms and showing the trend of them on  charts." url="alarm/query.do" tableName="ALARM">
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Delete"/>
+			<func code="04" title="Query"/>
+		</module>	
+		<module code="04" title="Events" descr="Display the events that sent by device when its configuration or setting changed." url="event/index.do" tableName="EVENT">
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Delete"/>
+			<func code="04" title="Query"/>
+		</module>
+	</domain>	
+	<domain code="18" title="Toolbox" packageName="network" parentPackageName="com.transoft.nms">
+		<module code="01" title="Mib Browser" descr="Web based Mib Browser" url="mibBrowser/index.do" model="MibBrowser">			
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Delete"/>
+			<func code="04" title="Query"/>
+		</module>			
+	</domain>	
+	<domain code="19" title="Advanced" packageName="network" parentPackageName="com.transoft.nms">
+		<module code="01" title="Credential" descr="Credential Management" url="credential/index.do" tableName="CREDENTIAL">			
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Delete"/>
+			<func code="04" title="Query"/>
+		</module>	
+		<module code="02" title="Monitoring" descr="Moniting the performance, state of network device,and you can get some suggetion from the charts." url="timerTask/index.do" tableName="TIMER_TASK">
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Delete"/>
+			<func code="04" title="Query"/>
+		</module>	
+		<module code="03" title="Notify Manager" descr="User can define which events he wants to get the notifications" url="notifyProfile/index.do" tableName="NOTIFY_PROFILE">
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Delete"/>
+			<func code="04" title="Query"/>
+		</module>	
+		<module code="04" title="Data Cleanup" descr="Data Cleanup" url="cleanup/index.do" tableName="CLEANUP">			
+			<func code="04" title="Clean"/>
+		</module>
+		<module code="04" title="Data Backup" descr="Data Backup" url="backup/index.do" tableName="BACKUP"  isHide="true">			
+			<func code="04" title="Backup"/>
+		</module>
+	</domain>	
+	
+	<domain code="30" title="Reports" packageName="report" parentPackageName="com.transoft.nms">
+		<domain code="01" title="System" packageName="report">
+			<module id="ALARM_STAT" code="01" title="Fault Statistics" descr="" url="report/show.do?reportFilePath=classpath:report/network/AlarmStat.xml" tableName="REPORT">			
+				<func code="04" title="Query"/>
+			</module>
+			<module id="ALARM_TREND" code="02" title="故障趋势表" descr="" url="report/show.do?reportFilePath=classpath:report/network/AlarmTrend.xml" tableName="REPORT" isHide="true">			
+				<func code="04" title="Query"/>
+			</module>
+			<module id="APP_REALTIME_STAT" code="03" title="应用实时统计表" descr="" url="report/show.do?reportFilePath=classpath:report/network/AppRealtimeStat.xml" tableName="REPORT" isHide="true">			
+				<func code="04" title="Query"/>
+			</module>
+			<module id="APP_CHANGELOG_LIST" code="04" title="应用变更明细表" descr="" url="report/show.do?reportFilePath=classpath:report/network/AppChangelogList.xml" tableName="REPORT" isHide="true">			
+				<func code="04" title="Query"/>
+			</module>
+			<module id="ALARM_LIST" code="05" title="故障明细表" descr="" url="report/show.do?reportFilePath=classpath:report/network/AlarmList.xml" tableName="REPORT" isHide="true">			
+				<func code="04" title="Query"/>
+			</module>
+			<module id="EVENT_STAT" code="06" title="事件统计表" descr="" url="report/show.do?reportFilePath=classpath:report/network/EventStat.xml" tableName="REPORT" isHide="true">			
+				<func code="04" title="Query"/>
+			</module>
+			<module id="EVENT_LIST" code="07" title="事件明细表" descr="" url="report/show.do?reportFilePath=classpath:report/network/EventList.xml" tableName="REPORT" isHide="true">			
+				<func code="04" title="Query"/>
+			</module>
+			<module id="POLICY_STAT" code="08" title="策略统计表" descr="" url="report/show.do?reportFilePath=classpath:report/network/PolicyStat.xml" tableName="REPORT" isHide="true">			
+				<func code="04" title="Query"/>
+			</module>
+			<module id="POLICY_DETAIL" code="09" title="策略明细表" descr="" url="report/show.do?reportFilePath=classpath:report/network/PolicyList.xml" tableName="REPORT" isHide="true">				
+				<func code="04" title="Query"/>
+			</module>
+			<module id="Devices by Category" code="10" title="Devices by Category" descr="" url="report/showDevicesByCategory.do" tableName="REPORT" isHide="true">				
+				<func code="04" title="Query"/>
+			</module>
+		</domain>
+		<domain code="02" title="Health And Performance" packageName="report">	
+			<module id="Health Report" code="01" title="Health Report" descr="Get health report of all devices" url="report/health.do" tableName="REPORT">				
+				<func code="04" title="Query"/>
+			</module>	
+			<module id="Devices by CPU Utilization" code="02" title="Devices by CPU Utilization" descr="Identify overloaded devices with high CPU Utilization." url="report/show.do?reportFilePath=classpath:report/network/DevicesByCpu.xml" tableName="REPORT">				
+				<func code="04" title="Query"/>
+			</module>
+			<module id="Devices by Memory Utilization" code="03" title="Devices by Memory Utilization" descr="Identify overloaded devices with high Memory Utilization." url="report/show.do?reportFilePath=classpath:report/network/DevicesByMem.xml" tableName="REPORT">				
+				<func code="04" title="Query"/>
+			</module>
+			<module id="Devices by Disk Utilization" code="04" title="Devices by Disk Utilization" descr="Identify overloaded devices with high Disk Utilization." url="report/show.do?reportFilePath=classpath:report/network/DevicesByDisk.xml" tableName="REPORT" >				
+				<func code="04" title="Query"/>
+			</module>
+		 	<module id="Interfaces by Rx Utilization" code="05" title="Interfaces by Rx Utilization" descr="Identify devices with heavy incoming traffic utilization" url="report/show.do?reportFilePath=classpath:report/network/DevicesByRxTraffic.xml" tableName="REPORT" >				
+				<func code="04" title="Query"/>
+			</module>
+			<module id="Interfaces by Tx Utilization" code="06" title="Interfaces by Tx Utilization" descr="Identify devices with heavy outgoing traffic utilization" url="report/show.do?reportFilePath=classpath:report/network/DevicesByTxTraffic.xml" tableName="REPORT" >				
+				<func code="04" title="Query"/>
+			</module>
+		</domain>
+		<domain code="03" title="Availability and Response" packageName="network" isHide="true">		
+		
+		</domain>
+		<domain code="04" title="Inventory" packageName="network" isHide="true">
+			<module id="Devices by Device Type" code="01" title="Devices by Device Type" descr="" url="report/show.do?reportFilePath=classpath:report/network/DeviceListByType.xml" tableName="REPORT"  isHide="true">			
+				<func code="04" title="Query"/>
+			</module>	
+			<module id="All Devices" code="03" title="All Devices" descr="" url="report/show.do?reportFilePath=classpath:report/network/AlarmList.xml" tableName="REPORT"  isHide="true">			
+				<func code="04" title="Query"/>
+			</module>
+		
+		</domain>
+		<domain code="05" title="Virtual Devices" packageName="network" isHide="true">
+		
+		
+		</domain>				
+	</domain>	
+	<!-- 非系统功能，管理第三方业务 -->
+	<domain code="A1" title="LiveResource" packageName="liveresource" parentPackageName="com.transoft.liveresource">
+		<module code="01" title="User" descr="User management" url="user/index.do" tableName="USER" >			
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="03" title="Delete"/>
+			<func code="04" title="Query"/>
+			<func code="05" title="Edit Roles"/>
+			<func code="09" title="Login"/>
+		</module>		
+		<module code="02" title="Role" descr="Manage the roles with different privileges." url="lRRole/index.do" menuName="Role Manager" tableName="ROLE">
+			<func code="01" title="Add"/>
+			<func code="02" title="Edit"/>
+			<func code="04" title="Query"/>
+			<func code="05" title="Edit Privileges"/>
+			<func code="07" title="Delete"/>
+		</module>			
+	</domain>
+		
+</config>

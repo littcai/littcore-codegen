@@ -1,0 +1,101 @@
+package com.litt.core.codegen.model;
+
+public class Func
+{
+	
+	/**
+	 * 编号.
+	 */
+	private String code;
+	
+	/**
+	 * 英文名称
+	 */
+	private String name; 
+	
+	/**
+	 * 标题.
+	 */
+	private String title;
+	
+	private String descr; 
+	
+	/**
+	 * 
+	 */
+	private boolean isPermission = true;
+	
+	/**
+	 * @return the code
+	 */
+	public String getCode()
+	{
+		return code;
+	}
+
+	/**
+	 * @param code the code to set
+	 */
+	public void setCode(String code)
+	{
+		this.code = code;
+	}
+
+	/**
+	 * @return the title
+	 */
+	public String getTitle()
+	{
+		return title;
+	}
+
+	/**
+	 * @param title the title to set
+	 */
+	public void setTitle(String title)
+	{
+		this.title = title;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @return the descr
+	 */
+	public String getDescr() {
+		return descr;
+	}
+
+	/**
+	 * @param descr the descr to set
+	 */
+	public void setDescr(String descr) {
+		this.descr = descr;
+	}
+
+	/**
+	 * @return the isPermission
+	 */
+	public boolean isPermission() {
+		return isPermission;
+	}
+
+	/**
+	 * @param isPermission the isPermission to set
+	 */
+	public void setPermission(boolean isPermission) {
+		this.isPermission = isPermission;
+	}
+}

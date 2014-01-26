@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d - %c - [%t] %-5p - %m%n" />
+		</layout>		
+	</appender>
+	
+	<appender name="FILE_DEBUG"
+		class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="D:/log_debug.log" />
+		<param name="Append" value="false" />
+		<param name="MaxFileSize" value="102400KB"/>      
+     	<param name="MaxBackupIndex" value="10"/> 
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d - %c - [%t] %-5p - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="DEBUG" />
+			<param name="levelMax" value="DEBUG" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+	
+	<appender name="FILE_ERROR"
+		class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="../log_error.log" />
+		<param name="Append" value="false" />
+		<param name="MaxFileSize" value="102400KB"/>      
+     	<param name="MaxBackupIndex" value="10"/> 
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d - %c - [%t] %-5p - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="WARN" />
+			<param name="levelMax" value="ERROR" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+	
+	<appender name="FILE_log"
+		class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="d:/log_log.log" />
+		<param name="Append" value="false" />
+		<param name="MaxFileSize" value="102400KB"/>      
+     	<param name="MaxBackupIndex" value="10"/> 
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d - %c - [%t] %-5p - %m%n" />
+		</layout>
+	</appender>
+	
+	<category name="com.litt.core">
+		<level value="DEBUG" />
+	</category>
+	
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="STDOUT" />	
+	</root>
+	
+</log4j:configuration>

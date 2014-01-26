@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 参数字典配置 -->
+<dict>	
+<!-- ******************************** NMS ********************************  -->		
+
+	<module table="NODE" package="com.transoft.nms.enums">		
+
+		<type code="4103" name="Sync Status" column="SYNC_STATUS" enum="NodeSyncStatus">
+			<param value="0" name="UNKNOWN" content="Unknown" default="true"/>				
+			<param value="1" name="SUCCESS" content="Success"/>	
+			<param value="2" name="TIMEOUT" content="Timeout"/>
+			<param value="3" name="AUTH_FAILED" content="Auth failed"/>
+			<param value="9" name="ERROR" content="Error"/>
+		</type>
+	</module>
+	
+</dict>

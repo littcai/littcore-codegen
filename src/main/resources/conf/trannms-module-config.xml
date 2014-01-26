@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+ 	<!-- 没有模块和权限，但是有菜单，只有超级管理员能看到 -->
+ 	<domain code="00" title="高级管理" package="system" parentPackage="com.litt.cidp" isHide="true">
+		<module code="01" title="数据锁" description="直接对数据库锁定对象进行管理" url="database/index.do" menuName="数据锁管理" model="SessionLock">
+			<func code="01" title="管理"/>			
+		</module>
+	</domain>
+	<domain code="01" title="Admin" package="system" parentPackage="com.litt.cidp">		
+		<module id="SYSTEM_CONF" code="01" title="System Settings" description="配置系统运行参数" url="systemInfo/index.do" table="SYSTEM_INFO">
+			<func code="01" title="配置"/>			
+		</module>
+		<module id="OPERATOR_MANAGE" code="02" title="Operator" description="操作员基本信息管理" url="operator/index.do"  menuName="Operator Manager" table="OPERATOR">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="注销/恢复"/>
+			<func code="04" title="查询"/>
+			<func code="05" title="修改密码" isPermission="false"/>
+			<func code="06" title="分配角色"/>
+			<func code="07" title="删除"/>
+			<func code="09" title="登录"/>
+			<func code="10" title="安全退出" isPermission="false"/>
+			<func code="11" title="导入"/>
+			<func code="12" title="导出"/>
+		</module>
+		<module id="ROLE_MANAGE" code="03" title="Role" description="角色基本信息管理、角色权限分配" url="role/index.do" menuName="Role Manager" table="ROLE">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="注销/恢复"/>
+			<func code="04" title="查询"/>
+			<func code="05" title="分配权限"/>
+			<func code="07" title="删除"/>
+			<func code="11" title="导入"/>
+			<func code="12" title="导出"/>
+		</module>		
+		<module id="DICT_PARAM_MANAGE" code="05" title="参数" description="系统参数字典管理" table="DICT_PARAM" isMenu="false">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>
+		<module id="DICT_PARAM_TYPE_MANAGE" code="06" title="Dictionary" description="系统参数字典类型管理" url="dictParamType/index.do" menuName="Dictionary Manager" table="DICT_PARAM_TYPE" > 
+			<func code="02" title="修改"/>
+			<func code="04" title="查询"/>
+			<func code="05" title="新建参数"/>
+			<func code="06" title="修改参数"/>
+			<func code="07" title="删除参数"/>
+		</module>
+		<module id="OP_LOG_MANAGE" code="07" title="Operation Log" description="操作日志查询" url="opLog/index.do" menuName="Operation Log" table="OP_LOG">
+			<func code="04" title="查询"/>			
+		</module>		
+		<module id="DEPARTMENT_MANAGE" code="08" title="Department" description="部门基本信息管理" url="department/index.do" menuName="Department Manager" table="DEPARTMENT">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除/恢复"/>
+			<func code="04" title="查询"/>
+		</module>					
+		<module id="MENU_MANAGE" code="09" title="Menu" description="菜单基本信息管理" url="menu/index.do" menuName="Menu Manager" table="MENU" isMenu="false">			
+			<func code="02" title="修改"/>
+			<func code="03" title="屏蔽/恢复"/>
+			<func code="04" title="查询"/>
+		</module>
+		<module id="CACHE_MANAGE" code="10" title="缓存" description="系统缓存管理" url="cache/index.do" menuName="缓存管理" table="CACHE"  isMenu="false">
+			<func code="01" title="刷新缓存"/>			
+		</module>
+		<module id="MODULE_MANAGE" code="11" title="模块" description="模块管理" url="module/index.do"  menuName="模块管理" table="MODULE"  isMenu="false">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>
+		<module id="FUNC_MANAGE" code="12" title="功能项" description="功能项管理" url="func/index.do" menuName="功能项管理" table="FUNC"  isMenu="false">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>
+		<module id="PERMISSION_MANAGE" code="13" title="Permission" description="权限管理" url="permission/index.do" menuName="Permission Manager" table="PERMISSION"  isMenu="false">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>	
+		<module id="IP_ACCESS_MANAGE" code="14" title="Access Authorization" description="IP访问管理" url="ipAccessLimit/index.do" menuName="Access Authorization" table="IP_ACCESS_LIMIT">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>	
+		<module id="JOB_MANAGE" code="15" title="Job" description="操作员职务管理" url="job/index.do" menuName="Job Manager" table="JOB">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除/恢复"/>
+			<func code="04" title="查询"/>
+		</module>	
+		<module id="ONLINE_OPERATOR_MANAGE" code="16" title="Online Operators" description="在线操作员" url="onlineOperator/index.do" menuName="Online Operators" model="LoginVo">
+			<func code="01" title="发消息"/>
+			<func code="03" title="强制下线"/>
+			<func code="04" title="查询"/>
+		</module>		
+	</domain>
+	<!-- 
+	<domain code="02" title="系统辅助" package="assistant" parentPackage="com.litt.cidp">
+		<module code="01" title="公告" description="系统公告管理" url="affiche/index.do" menuName="公告管理" table="AFFICHE" >
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+			<func code="05" title="审核"/>
+			<func code="06" title="发布"/>
+		</module>
+		<module code="05" title="FAQ分类管理" description="FAQ分类管理" url="faqCategory/index.do" menuName="FAQ分类管理" table="FAQ_CATEGORY" >
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>			
+		<module code="06" title="FAQ" description="FAQ管理" url="faq/index.do" menuName="FAQ管理" table="FAQ" >
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+			<func code="05" title="审核"/>
+			<func code="06" title="发布"/>
+		</module>
+		<module code="07" title="站内搜索" description="站内搜索" url="siteSearch/index.do" menuName="站内搜索" model="SiteSearch">			
+			<func code="04" title="查询"/>
+		</module>		
+	</domain>		
+	<domain code="03" title="个人门户" package="personal" parentPackage="com.litt.cidp">
+		<module code="10" title="日程计划" description="日程计划管理" url="calendar/index.do" menuName="日程计划" table="CALENDAR">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>
+		<module code="13" title="待办工单" description="待办工单" url="task/unfinished.do" menuName="待办工单" table="TASK">
+			<func code="04" title="查询"/>
+		</module>
+		<module code="14" title="已办工单" description="已办工单" url="task/finished.do" menuName="已办工单" table="TASK">
+			<func code="04" title="查询"/>
+		</module>
+	</domain>
+	<domain code="09" title="分析报表" package="report" parentPackage="com.litt.cidp">
+		<module code="01" title="报表分类管理" description="报表分类管理" url="reportCategory/index.do" menuName="报表分类管理" table="REPORT_CATEGORY">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>
+		<module code="02" title="报表管理" description="报表管理" url="report/index.do" menuName="报表管理" table="REPORT">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>		
+	</domain>
+	 -->
+	<domain code="11" title="Network" package="network" parentPackage="com.transoft.nms">
+		<module id="NW_DISCOVERY" code="01" title="Discovery" description="网元发现管理" url="discovery/index.do" table="DISCOVERY">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>
+		<domain code="02" title="Topology" package="network">
+			<module id="NW_TOPOLOGY" code="02" title="Physical Topology" description="网络拓扑" url="topology/physical.do" table="TOPO_VIEW">			
+				<func code="04" title="查询"/>
+			</module>	
+			<module id="NW_TOPOLOGY" code="03" title="Application Topology" description="网络拓扑" url="topology/application.do" table="TOPO_VIEW">			
+				<func code="04" title="查询"/>
+			</module>	
+			<module id="NW_TOPOLOGY" code="04" title="Network Topology" description="网络拓扑" url="topology/network.do" table="TOPO_VIEW">			
+				<func code="04" title="查询"/>
+			</module>		
+		</domain>				
+	</domain>	
+	<domain code="12" title="Nodes" package="network" parentPackage="com.transoft.nms">				
+		<module id="NE_MANAGE" code="01" title="Nodes Manager" description="网元管理" url="node/index.do" table="NODE">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>								
+	</domain>	
+	<domain code="13" title="Assets" package="network" parentPackage="com.transoft.nms">
+		<domain code="01" title="Physical Assets" description="网络设备、主机设备、存储设备管理" package="network">				
+			<module code="01" title="Host" description="主机管理" url="device/host.do" table="NODE">
+				<func code="04" title="查询"/>
+			</module>
+			<module code="02" title="Network" description="网络设备管理" url="device/network.do" table="NODE">
+				<func code="04" title="查询"/>
+			</module>
+			<module code="03" title="Storage" description="存储设备管理" url="device/storage.do" table="STORAGE">
+				<func code="04" title="查询"/>
+			</module>
+		</domain>
+		<domain code="02" title="Virtual Assets" description="虚拟网络设备、主机设备、存储设备管理" package="network">				
+			<module code="01" title="VM" description="" url="device/vm.do" table="NODE">
+				<func code="04" title="查询"/>
+			</module>
+			<module code="02" title="v-network" description="" url="device/vnetwork.do" table="VNETWORK">
+				<func code="04" title="查询"/>
+			</module>
+			<module code="02" title="v-switch" description="" url="device/vswitch.do" table="VSWITCH">
+				<func code="04" title="查询"/>
+			</module>
+			<module code="03" title="v-storage" description="" url="device/vstorage.do" table="VSTORAGE">
+				<func code="04" title="查询"/>
+			</module>
+		</domain>					
+	</domain>		
+	<domain code="14" title="Fault" package="network" parentPackage="com.transoft.nms">
+		<module code="01" title="Configuration" description="告警配置管理(阀值、级别、通知)" url="alarm/config.do" table="ALARM">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>	
+		<module code="02" title="Active Alarms" description="列表呈现尚未处理的告警" url="alarm/index.do" table="ALARM">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>
+		<module code="03" title="Alarm History" description="历史告警查询" url="alarm/query.do" table="ALARM">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>	
+		<module code="04" title="Events" description="事件查询" url="event/index.do" table="EVENT">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>
+	</domain>
+	<domain code="15" title="Configuration" package="network" parentPackage="com.transoft.nms">				
+		<module code="04" title="Policy" description="管理部署策略" url="policy/index.do" table="POLICY_METADATA">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>
+		<module code="05" title="Cloud Disk" description="Cloud Disk Management" url="ceph/index.do" table="CEPH">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>
+	</domain>	
+	<domain code="16" title="Performance" package="network" parentPackage="com.transoft.nms">
+		<module code="01" title="Monitoring" description="性能采集配置管理(采集器，采集周期，阀值、级别、通知)" url="collector/config.do" table="COLLECTOR">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>	
+	</domain>		
+	<domain code="17" title="Security" package="network" parentPackage="com.transoft.nms">
+		<module id="IP_MANAGE" code="03" title="IP Address Management" description="查看子网中IP地址的使用情况" url="ip/index.do" table="IP">			
+			<func code="04" title="查询"/>
+		</module>
+		<module id="NETWORK_PERMISSION" code="04" title="Authorization Management" description="定制网络访问授权" url="networkPermission/index.do" table="NETWORK_PERMISSION">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>	
+	</domain>
+	<domain code="18" title="Application" package="network" parentPackage="com.transoft.nms">
+		<module code="01" title="Application Manager" description="管理部署应用程序" url="appMetadata/index.do" table="APP_METADATA">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>
+		<module code="02" title="应用门户" description="管理部署应用程序" url="app/index.do" table="APP_METADATA" isHide="true">
+			<func code="01" title="新建"/>
+			<func code="02" title="修改"/>
+			<func code="03" title="删除"/>
+			<func code="04" title="查询"/>
+		</module>
+	</domain>		
+	<domain code="19" title="Reports" package="report" parentPackage="com.transoft.nms">
+		<domain code="01" title="System" package="report">
+			<module id="ALARM_STAT" code="01" title="Fault Statistics" description="" url="report/show.do?reportFilePath=classpath:report/network/AlarmStat.xml" table="REPORT">			
+				<func code="04" title="查询"/>
+			</module>
+			<module id="ALARM_TREND" code="02" title="故障趋势表" description="" url="report/show.do?reportFilePath=classpath:report/network/AlarmTrend.xml" table="REPORT" isHide="true">			
+				<func code="04" title="查询"/>
+			</module>
+			<module id="APP_REALTIME_STAT" code="03" title="应用实时统计表" description="" url="report/show.do?reportFilePath=classpath:report/network/AppRealtimeStat.xml" table="REPORT" isHide="true">			
+				<func code="04" title="查询"/>
+			</module>
+			<module id="APP_CHANGELOG_LIST" code="04" title="应用变更明细表" description="" url="report/show.do?reportFilePath=classpath:report/network/AppChangelogList.xml" table="REPORT" isHide="true">			
+				<func code="04" title="查询"/>
+			</module>
+			<module id="ALARM_LIST" code="05" title="故障明细表" description="" url="report/show.do?reportFilePath=classpath:report/network/AlarmList.xml" table="REPORT" isHide="true">			
+				<func code="04" title="查询"/>
+			</module>
+			<module id="EVENT_STAT" code="06" title="事件统计表" description="" url="report/show.do?reportFilePath=classpath:report/network/EventStat.xml" table="REPORT" isHide="true">			
+				<func code="04" title="查询"/>
+			</module>
+			<module id="EVENT_LIST" code="07" title="事件明细表" description="" url="report/show.do?reportFilePath=classpath:report/network/EventList.xml" table="REPORT" isHide="true">			
+				<func code="04" title="查询"/>
+			</module>
+			<module id="POLICY_STAT" code="08" title="策略统计表" description="" url="report/show.do?reportFilePath=classpath:report/network/PolicyStat.xml" table="REPORT" isHide="true">			
+				<func code="04" title="查询"/>
+			</module>
+			<module id="POLICY_DETAIL" code="09" title="策略明细表" description="" url="report/show.do?reportFilePath=classpath:report/network/PolicyList.xml" table="REPORT" isHide="true">				
+				<func code="04" title="查询"/>
+			</module>
+			<module id="Devices by Category" code="10" title="Devices by Category" description="" url="report/showDevicesByCategory.do" table="REPORT" isHide="true">				
+				<func code="04" title="查询"/>
+			</module>
+		</domain>
+		<domain code="02" title="Health And Performance" package="report">	
+			<module id="Health Report" code="01" title="Health Report" description="Get health report of all devices" url="report/health.do" table="REPORT">				
+				<func code="04" title="查询"/>
+			</module>	
+			<module id="Devices by CPU Utilization" code="02" title="Devices by CPU Utilization" description="" url="report/show.do?reportFilePath=classpath:report/network/DevicesByCpu.xml" table="REPORT">				
+				<func code="04" title="查询"/>
+			</module>
+			<module id="Devices by Memory Utilization" code="03" title="Devices by Memory Utilization" description="" url="report/show.do?reportFilePath=classpath:report/network/DevicesByMem.xml" table="REPORT">				
+				<func code="04" title="查询"/>
+			</module>
+			<module id="Devices by Disk Utilization" code="04" title="Devices by Disk Utilization" description="" url="report/show.do?reportFilePath=classpath:report/network/DevicesByDisk.xml" table="REPORT" >				
+				<func code="04" title="查询"/>
+			</module>
+		 	<module id="Interfaces by Rx Utilization" code="05" title="Interfaces by Rx Utilization" description="" url="report/show.do?reportFilePath=classpath:report/network/DevicesByRxTraffic.xml" table="REPORT" >				
+				<func code="04" title="查询"/>
+			</module>
+			<module id="Interfaces by Tx Utilization" code="06" title="Interfaces by Tx Utilization" description="" url="report/show.do?reportFilePath=classpath:report/network/DevicesByTxTraffic.xml" table="REPORT" >				
+				<func code="04" title="查询"/>
+			</module>
+		
+		</domain>
+		<domain code="03" title="Availability and Response" package="network" isHide="true">		
+		
+		</domain>
+		<domain code="04" title="Inventory" package="network" isHide="true">
+			<module id="Devices by Device Type" code="01" title="Devices by Device Type" description="" url="report/show.do?reportFilePath=classpath:report/network/DeviceListByType.xml" table="REPORT"  isHide="true">			
+				<func code="04" title="查询"/>
+			</module>	
+			<module id="All Devices" code="03" title="All Devices" description="" url="report/show.do?reportFilePath=classpath:report/network/AlarmList.xml" table="REPORT"  isHide="true">			
+				<func code="04" title="查询"/>
+			</module>
+		
+		</domain>
+		<domain code="05" title="Virtual Devices" package="network" isHide="true">
+		
+		
+		</domain>				
+	</domain>	
+	
+		
+</config>
