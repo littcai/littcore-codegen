@@ -20,7 +20,7 @@ package com.litt.core.codegen.common;
 public class GenConstants
 {	
 	public enum DatabaseType {
-		oracle, sqlserver, mysql
+		mysql, oracle, sqlserver
 	}
 	
 	public enum LangType {

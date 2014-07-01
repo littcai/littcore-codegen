@@ -1,9 +1,20 @@
 package com.litt.core.codegen;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
+import org.dom4j.Document;
+import org.dom4j.Element;
+
 import com.litt.core.codegen.common.GenConstants.DatabaseType;
 import com.litt.core.codegen.common.GenConstants.LangType;
 import com.litt.core.codegen.model.DictConfig;
+import com.litt.core.codegen.model.DictModule;
 import com.litt.core.codegen.util.ConfigUtils;
+import com.litt.core.util.XmlUtils;
 
 
 /** 
@@ -29,7 +40,7 @@ public class GenDictParamSql extends BaseGen
 	private LangType langType;
 	private String configFilePath;
 	private String targetFilePath;
-	private DictConfig config;	
+	private List<DictModule> dictModuleList = new ArrayList<DictModule>();	
 	
 	public GenDictParamSql(String projectPath, String configFilePath, String targetFilePath, DatabaseType databaseType, LangType langType) throws Exception
 	{
@@ -42,8 +53,21 @@ public class GenDictParamSql extends BaseGen
 	
 	public void prepareData()throws Exception
 	{
-		this.config = ConfigUtils.loadByCastor(DictConfig.class, "classpath:dict-conf-mapping.xml", configFilePath);
-		addProp("dictModuleList", config.getDictModuleList());
+		File configFile = new File(configFilePath);
+		Document document = XmlUtils.readXml(configFile);
+		Element rootE = document.getRootElement();
+		String importProject = rootE.attributeValue("import");
+		if(!StringUtils.isEmpty(importProject))	//需要导入外部项目配置，约定导入配置与当前配置在同一目录
+		{
+			File importFile = new File(configFile.getParent(), importProject);
+			DictConfig config = ConfigUtils.loadByCastor(DictConfig.class, "classpath:dict-conf-mapping.xml", importFile.getPath());
+			CollectionUtils.addAll(this.dictModuleList, config.getDictModuleList());
+		}
+		
+		DictConfig config = ConfigUtils.loadByCastor(DictConfig.class, "classpath:dict-conf-mapping.xml", configFilePath);
+		CollectionUtils.addAll(this.dictModuleList, config.getDictModuleList());
+		
+		addProp("dictModuleList", dictModuleList);
 	}
 	
 	public void gen() throws Exception

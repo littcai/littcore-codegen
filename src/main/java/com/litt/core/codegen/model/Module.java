@@ -61,7 +61,9 @@ public class Module {
 		if(!ValidateUtils.isEmpty(modelName))
 			return modelName;
 		else
+		{			
 			return StringUtils.hump(tableName, true);
+		}
 	}
 	
 	public String getInstanceName()

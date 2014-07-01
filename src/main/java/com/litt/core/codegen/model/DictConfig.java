@@ -1,5 +1,7 @@
 package com.litt.core.codegen.model;
 
+import org.apache.commons.lang.ArrayUtils;
+
 /**
  * .
  * 

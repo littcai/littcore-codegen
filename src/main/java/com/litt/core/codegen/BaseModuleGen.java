@@ -4,8 +4,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.dom4j.Document;
 import org.dom4j.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.litt.core.codegen.common.GenConstants;
 import com.litt.core.codegen.model.Domain;
@@ -13,7 +16,6 @@ import com.litt.core.codegen.model.Func;
 import com.litt.core.codegen.model.Module;
 import com.litt.core.common.Utility;
 import com.litt.core.exception.BusiException;
-import com.litt.core.util.ResourceUtils;
 import com.litt.core.util.XmlUtils;
 
 /**
@@ -24,7 +26,7 @@ import com.litt.core.util.XmlUtils;
  * </pre>
  * 
  * <pre><b>Changelog：</b>
- *    
+ *    2014-07-01 增加<import>节点，实现xml继承，在父子项目中不用再维护相同的模块配置
  * </pre>
  * 
  * @author <a href="mailto:littcai@hotmail.com">Bob.cai</a>
@@ -32,6 +34,8 @@ import com.litt.core.util.XmlUtils;
  * @version 1.0
  */
 public class BaseModuleGen extends BaseGen {
+	
+	private static final Logger logger = LoggerFactory.getLogger(BaseModuleGen.class);
 			
 	private String moduleFilePath;
 	
@@ -45,9 +49,19 @@ public class BaseModuleGen extends BaseGen {
 	
 	private void init() throws Exception
 	{
-		File funcFile = new File(moduleFilePath);
-		Document document = XmlUtils.readXml(funcFile);
-		Element rootE = document.getRootElement();	
+		File moduleFile = new File(moduleFilePath);
+		init(moduleFile);
+	}
+
+	private void init(File moduleFile) throws Exception {
+		Document document = XmlUtils.readXml(moduleFile);
+		Element rootE = document.getRootElement();
+		String importProject = rootE.attributeValue("import");
+		if(!StringUtils.isEmpty(importProject))	//需要导入外部项目配置，约定导入配置与当前配置在同一目录
+		{
+			File importFile = new File(moduleFile.getParent(), importProject);
+			this.init(importFile);
+		}
 		List<Element> domainEList = rootE.elements();
 		for (Element element : domainEList) {
 			Domain domain = parseDomain(null, element);				
@@ -65,6 +79,7 @@ public class BaseModuleGen extends BaseGen {
 		}
 		else if(GenConstants.TAG_NAME_MODULE == tagName)	//类型为模块
 		{
+			logger.info("Parse module:{}, parent domain:{}", new Object[]{element.attributeValue("name"), parentDomain.getName()});
 			Module module = new Module();
 			boolean isHide = Utility.parseBoolean(element.attributeValue("isHide"), false);
 			boolean isMenu = Utility.parseBoolean(element.attributeValue("isMenu"), true);
@@ -105,6 +120,8 @@ public class BaseModuleGen extends BaseGen {
 	 * @return
 	 */
 	private Domain parseDomain(Domain parentDomain, Element element) {
+		logger.info("Parse domain:{}", new Object[]{element.attributeValue("name")});
+		
 		Domain domain = new Domain();
 		boolean isHide = Utility.parseBoolean(element.attributeValue("isHide"), false);
 		boolean isMenu = Utility.parseBoolean(element.attributeValue("isMenu"), true);

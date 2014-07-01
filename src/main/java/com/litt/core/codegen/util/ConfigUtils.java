@@ -1,7 +1,9 @@
 package com.litt.core.codegen.util;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 
 import org.exolab.castor.mapping.Mapping;
 import org.exolab.castor.xml.Unmarshaller;
@@ -43,7 +45,7 @@ public class ConfigUtils {
 			Mapping mapping = new Mapping();
 			InputSource is = new InputSource(new FileReader(confMappingFile));
 			mapping.loadMapping(is);
-			FileReader reader = new FileReader(confFile);
+			InputStreamReader reader = new InputStreamReader(new FileInputStream(confFile), "UTF-8");
 			Unmarshaller unmarshaller = new Unmarshaller(clazz);
 			unmarshaller.setMapping(mapping);
 			T config = (T)unmarshaller.unmarshal(reader);
