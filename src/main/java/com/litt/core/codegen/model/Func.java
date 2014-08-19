@@ -8,6 +8,8 @@ public class Func
 	 */
 	private String code;
 	
+	private String fullCode; 
+
 	/**
 	 * 英文名称
 	 */
@@ -41,6 +43,14 @@ public class Func
 		this.code = code;
 	}
 
+	public String getFullCode() {
+		return fullCode;
+	}
+
+	public void setFullCode(String fullCode) {
+		this.fullCode = fullCode;
+	}
+	
 	/**
 	 * @return the title
 	 */

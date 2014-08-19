@@ -26,6 +26,8 @@ public class Domain {
 	
 	private String code;
 	
+	private String fullCode; 
+	
 	/**
 	 * 英文名称
 	 */
@@ -244,6 +246,20 @@ public class Domain {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	/**
+	 * @return the fullCode
+	 */
+	public String getFullCode() {
+		return fullCode;
+	}
+
+	/**
+	 * @param fullCode the fullCode to set
+	 */
+	public void setFullCode(String fullCode) {
+		this.fullCode = fullCode;
 	}
 
 	

@@ -83,7 +83,11 @@ public class BaseModuleGen extends BaseGen {
 			Module module = new Module();
 			boolean isHide = Utility.parseBoolean(element.attributeValue("isHide"), false);
 			boolean isMenu = Utility.parseBoolean(element.attributeValue("isMenu"), true);
-			module.setCode(parentDomain.getCode()+ element.attributeValue("code"));
+			String moduleCode = element.attributeValue("code");
+			String fullCode = StringUtils.isNumeric(parentDomain.getFullCode())?(parentDomain.getFullCode()+moduleCode):(parentDomain.getFullCode()+"."+moduleCode);
+			
+			module.setCode(moduleCode);
+			module.setFullCode(fullCode);
 			
 			module.setName(element.attributeValue("name"));
 			module.setTitle(element.attributeValue("title"));
@@ -100,7 +104,10 @@ public class BaseModuleGen extends BaseGen {
 				List<Element> subEList = element.elements();
 				for (Element subE : subEList) {
 					Func func = new Func();
-					func.setCode(module.getCode()+subE.attributeValue("code"));
+					String funcCode = subE.attributeValue("code");
+					String funcFullCode = StringUtils.isNumeric(module.getFullCode())?(module.getFullCode()+funcCode):(module.getFullCode()+"."+funcCode);
+					func.setCode(funcCode);
+					func.setFullCode(funcFullCode);
 					func.setName(subE.attributeValue("name"));
 					func.setTitle(subE.attributeValue("title"));
 					func.setDescr(subE.attributeValue("descr"));
@@ -126,6 +133,7 @@ public class BaseModuleGen extends BaseGen {
 		boolean isHide = Utility.parseBoolean(element.attributeValue("isHide"), false);
 		boolean isMenu = Utility.parseBoolean(element.attributeValue("isMenu"), true);
 		domain.setCode(element.attributeValue("code"));
+		domain.setFullCode(domain.getCode());
 		domain.setName(element.attributeValue("name"));
 		domain.setTitle(element.attributeValue("title"));
 		domain.setDescr(Utility.trimNull(element.attributeValue("descr"),""));
@@ -136,7 +144,8 @@ public class BaseModuleGen extends BaseGen {
 		domain.setIsHide(isHide);	
 		if(parentDomain!=null)
 		{
-			domain.setCode(parentDomain.getCode()+domain.getCode());
+			String fullCode = StringUtils.isNumeric(parentDomain.getCode())?(parentDomain.getCode()+domain.getCode()):(parentDomain.getCode()+"."+domain.getCode());
+			domain.setFullCode(fullCode);
 			domain.setPackageName(parentDomain.getPackageName());
 			domain.setParentPackageName(parentDomain.getParentPackageName());
 		}
