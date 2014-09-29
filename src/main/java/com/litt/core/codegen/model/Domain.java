@@ -55,6 +55,9 @@ public class Domain {
 	 */
 	private String parentPackageName;
 	
+	
+	private int position;
+	
 	/**
 	 * 子节点列表.
 	 * Domain或Module
@@ -260,6 +263,20 @@ public class Domain {
 	 */
 	public void setFullCode(String fullCode) {
 		this.fullCode = fullCode;
+	}
+
+	/**
+	 * @return the position
+	 */
+	public int getPosition() {
+		return position;
+	}
+
+	/**
+	 * @param position the position to set
+	 */
+	public void setPosition(int position) {
+		this.position = position;
 	}
 
 	

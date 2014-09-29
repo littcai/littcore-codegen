@@ -53,6 +53,8 @@ public class Module {
 	/** 是否隐藏. */
 	private Boolean isHide = false;
 	
+	private int position;
+	
 	/**
 	 * 功能项列表.
 	 */
@@ -255,6 +257,20 @@ public class Module {
 	 */
 	public void setFullCode(String fullCode) {
 		this.fullCode = fullCode;
+	}
+
+	/**
+	 * @return the position
+	 */
+	public int getPosition() {
+		return position;
+	}
+
+	/**
+	 * @param position the position to set
+	 */
+	public void setPosition(int position) {
+		this.position = position;
 	}
 
 	

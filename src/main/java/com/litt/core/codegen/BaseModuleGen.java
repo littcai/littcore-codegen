@@ -40,7 +40,9 @@ public class BaseModuleGen extends BaseGen {
 	private String moduleFilePath;
 	
 	private List<Domain> domainList = new ArrayList<Domain>();
-
+	
+	private int maxRootDomainIndex = 0; //最大自动排序根域排序号
+	
 	public BaseModuleGen(String projectPath, String moduleFilePath) throws Exception {
 		super(projectPath);
 		this.moduleFilePath = moduleFilePath;
@@ -63,18 +65,20 @@ public class BaseModuleGen extends BaseGen {
 			this.init(importFile);
 		}
 		List<Element> domainEList = rootE.elements();
-		for (Element element : domainEList) {
-			Domain domain = parseDomain(null, element);				
+		
+		for (int i=0;i<domainEList.size();i++) {
+			Element element = domainEList.get(i);
+			Domain domain = parseDomain(null, element, i+maxRootDomainIndex);				
 			domainList.add(domain);
 		}
 	}
 	
-	private void parseSub(Domain parentDomain, Element element)
+	private void parseSub(Domain parentDomain, Element element, int index)
 	{		
 		String tagName = element.getName();	//标签名称
 		if(GenConstants.TAG_NAME_DOMAIN == tagName)	//类型为二级域
 		{
-			Domain domain = parseDomain(parentDomain, element);			
+			Domain domain = parseDomain(parentDomain, element, index);			
 			parentDomain.addSub(domain);
 		}
 		else if(GenConstants.TAG_NAME_MODULE == tagName)	//类型为模块
@@ -83,13 +87,16 @@ public class BaseModuleGen extends BaseGen {
 			Module module = new Module();
 			boolean isHide = Utility.parseBoolean(element.attributeValue("isHide"), false);
 			boolean isMenu = Utility.parseBoolean(element.attributeValue("isMenu"), true);
+			int position = Utility.parseInt(element.attributeValue("position"));
 			String moduleCode = element.attributeValue("code");
+			String name = element.attributeValue("name");
+			moduleCode = StringUtils.isEmpty(moduleCode)?name:moduleCode;
 			String fullCode = StringUtils.isNumeric(parentDomain.getFullCode())?(parentDomain.getFullCode()+moduleCode):(parentDomain.getFullCode()+"."+moduleCode);
 			
 			module.setCode(moduleCode);
 			module.setFullCode(fullCode);
 			
-			module.setName(element.attributeValue("name"));
+			module.setName(name);
 			module.setTitle(element.attributeValue("title"));
 			module.setDescr(Utility.trimNull(element.attributeValue("descr"),""));
 			module.setMenuName(element.attributeValue("menuName"));
@@ -98,6 +105,8 @@ public class BaseModuleGen extends BaseGen {
 			module.setUrl(element.attributeValue("url"));
 			module.setIsMenu(isMenu);
 			module.setIsHide(isHide);	
+			module.setPosition(position==0?index:position);
+			
 			
 			if(!element.isTextOnly())
 			{
@@ -105,10 +114,12 @@ public class BaseModuleGen extends BaseGen {
 				for (Element subE : subEList) {
 					Func func = new Func();
 					String funcCode = subE.attributeValue("code");
+					String funcName = subE.attributeValue("name");
+					funcCode = StringUtils.isEmpty(funcCode)?funcName:funcCode;
 					String funcFullCode = StringUtils.isNumeric(module.getFullCode())?(module.getFullCode()+funcCode):(module.getFullCode()+"."+funcCode);
 					func.setCode(funcCode);
 					func.setFullCode(funcFullCode);
-					func.setName(subE.attributeValue("name"));
+					func.setName(funcName);
 					func.setTitle(subE.attributeValue("title"));
 					func.setDescr(subE.attributeValue("descr"));
 					module.addFunc(func);
@@ -126,15 +137,20 @@ public class BaseModuleGen extends BaseGen {
 	 * @param element
 	 * @return
 	 */
-	private Domain parseDomain(Domain parentDomain, Element element) {
+	private Domain parseDomain(Domain parentDomain, Element element, int index) {
 		logger.info("Parse domain:{}", new Object[]{element.attributeValue("name")});
 		
 		Domain domain = new Domain();
 		boolean isHide = Utility.parseBoolean(element.attributeValue("isHide"), false);
 		boolean isMenu = Utility.parseBoolean(element.attributeValue("isMenu"), true);
-		domain.setCode(element.attributeValue("code"));
+		int position = Utility.parseInt(element.attributeValue("position"));
+		String code = element.attributeValue("code");
+		String name = element.attributeValue("name");
+		code = StringUtils.isEmpty(code)?name:code;
+		
+		domain.setCode(code);
 		domain.setFullCode(domain.getCode());
-		domain.setName(element.attributeValue("name"));
+		domain.setName(name);
 		domain.setTitle(element.attributeValue("title"));
 		domain.setDescr(Utility.trimNull(element.attributeValue("descr"),""));
 		domain.setMenuName(element.attributeValue("menuName"));
@@ -149,14 +165,19 @@ public class BaseModuleGen extends BaseGen {
 			domain.setPackageName(parentDomain.getPackageName());
 			domain.setParentPackageName(parentDomain.getParentPackageName());
 		}
+		maxRootDomainIndex = index>maxRootDomainIndex?index:maxRootDomainIndex;
+		
+		domain.setPosition(position==0?index:position);
+		
 		//validation
 		domain.validate();
 		
 		if(!element.isTextOnly())
 		{
 			List<Element> subEList = element.elements();
-			for (Element subE : subEList) {
-				this.parseSub(domain, subE);
+			for (int j=0;j<subEList.size();j++) {
+				Element subE = subEList.get(j);
+				this.parseSub(domain, subE, j);
 			}
 		}
 		return domain;
