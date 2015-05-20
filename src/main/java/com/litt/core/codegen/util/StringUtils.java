@@ -110,7 +110,7 @@ public final class StringUtils
 			else
 				sb.append(chr);
 		}
-		return sb.toString();
+		return sb.toString().trim();
 	}
 	
 	/** 

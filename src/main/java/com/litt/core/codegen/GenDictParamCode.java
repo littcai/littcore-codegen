@@ -1,12 +1,20 @@
 package com.litt.core.codegen;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
+import org.dom4j.Document;
+import org.dom4j.Element;
 
 import com.litt.core.codegen.common.GenConstants;
 import com.litt.core.codegen.model.DictConfig;
 import com.litt.core.codegen.model.DictModule;
 import com.litt.core.codegen.model.DictParamType;
 import com.litt.core.codegen.util.ConfigUtils;
+import com.litt.core.util.XmlUtils;
 
 
 /** 
@@ -29,7 +37,7 @@ import com.litt.core.codegen.util.ConfigUtils;
 public class GenDictParamCode extends BaseGen
 {	
 	private String configFilePath;
-	private DictConfig config;	
+	private List<DictModule> dictModuleList = new ArrayList<DictModule>();	
 	
 	public GenDictParamCode(String projectPath, String configFilePath) throws Exception
 	{
@@ -39,8 +47,25 @@ public class GenDictParamCode extends BaseGen
 	
 	public void prepareData()throws Exception
 	{
-		this.config = ConfigUtils.loadByCastor(DictConfig.class, "classpath:dict-conf-mapping.xml", configFilePath);
-		addProp("dictModuleList", config.getDictModuleList());
+		File configFile = new File(configFilePath);
+		this.importData(configFile);
+		
+		addProp("dictModuleList", dictModuleList);
+	}
+		
+	private void importData(File configFile)throws Exception
+	{
+		Document document = XmlUtils.readXml(configFile);
+		Element rootE = document.getRootElement();
+		String importProject = rootE.attributeValue("import");
+		if(!StringUtils.isEmpty(importProject))	//需要导入外部项目配置，约定导入配置与当前配置在同一目录，递归导入
+		{
+			File importFile = new File(configFile.getParent(), importProject);
+			this.importData(importFile);
+		}
+		
+		DictConfig config = ConfigUtils.loadByCastor(DictConfig.class, "classpath:dict-conf-mapping.xml", configFile.getPath());
+		CollectionUtils.addAll(this.dictModuleList, config.getDictModuleList());		
 	}
 	
 	public void gen() throws Exception
@@ -48,8 +73,7 @@ public class GenDictParamCode extends BaseGen
 		prepareData();
 		String templateFileName = "code/dictparam.ftl";
 		
-		DictModule[] dictModules = config.getDictModuleList();
-		for (DictModule dictModule : dictModules) {
+		for (DictModule dictModule : dictModuleList) {
 			addProp("dictModule", dictModule);					
 			List<DictParamType> dictParamTypeList = dictModule.getDictParamTypeList();
 			for (DictParamType dictParamType : dictParamTypeList) {

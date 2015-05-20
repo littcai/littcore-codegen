@@ -54,20 +54,25 @@ public class GenDictParamSql extends BaseGen
 	public void prepareData()throws Exception
 	{
 		File configFile = new File(configFilePath);
+		this.importData(configFile);
+		
+		addProp("dictModuleList", dictModuleList);
+	}
+	
+	private void importData(File configFile)throws Exception
+	{
 		Document document = XmlUtils.readXml(configFile);
 		Element rootE = document.getRootElement();
 		String importProject = rootE.attributeValue("import");
-		if(!StringUtils.isEmpty(importProject))	//需要导入外部项目配置，约定导入配置与当前配置在同一目录
+		if(!StringUtils.isEmpty(importProject))	//需要导入外部项目配置，约定导入配置与当前配置在同一目录，递归导入
 		{
 			File importFile = new File(configFile.getParent(), importProject);
-			DictConfig config = ConfigUtils.loadByCastor(DictConfig.class, "classpath:dict-conf-mapping.xml", importFile.getPath());
-			CollectionUtils.addAll(this.dictModuleList, config.getDictModuleList());
+			this.importData(importFile);
 		}
 		
-		DictConfig config = ConfigUtils.loadByCastor(DictConfig.class, "classpath:dict-conf-mapping.xml", configFilePath);
+		DictConfig config = ConfigUtils.loadByCastor(DictConfig.class, "classpath:dict-conf-mapping.xml", configFile.getPath());
 		CollectionUtils.addAll(this.dictModuleList, config.getDictModuleList());
 		
-		addProp("dictModuleList", dictModuleList);
 	}
 	
 	public void gen() throws Exception
