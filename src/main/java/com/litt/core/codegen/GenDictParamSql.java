@@ -14,6 +14,7 @@ import com.litt.core.codegen.common.GenConstants.LangType;
 import com.litt.core.codegen.model.DictConfig;
 import com.litt.core.codegen.model.DictModule;
 import com.litt.core.codegen.util.ConfigUtils;
+import com.litt.core.exception.BusiException;
 import com.litt.core.util.XmlUtils;
 
 
@@ -67,6 +68,15 @@ public class GenDictParamSql extends BaseGen
 		if(!StringUtils.isEmpty(importProject))	//需要导入外部项目配置，约定导入配置与当前配置在同一目录，递归导入
 		{
 			File importFile = new File(configFile.getParent(), importProject);
+			if(!importFile.exists())
+			{
+				String importProjectName = StringUtils.substringBefore(importProject, "-dict");
+				importFile = new File(new File(configFile.getParentFile().getParent(), importProjectName), importProject);
+			}
+			if(!importFile.exists())
+			{
+				throw new BusiException("import file not found："+importFile.getPath());
+			}
 			this.importData(importFile);
 		}
 		

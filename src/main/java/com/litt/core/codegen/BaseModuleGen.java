@@ -59,9 +59,18 @@ public class BaseModuleGen extends BaseGen {
 		Document document = XmlUtils.readXml(moduleFile);
 		Element rootE = document.getRootElement();
 		String importProject = rootE.attributeValue("import");
-		if(!StringUtils.isEmpty(importProject))	//需要导入外部项目配置，约定导入配置与当前配置在同一目录
+		if(!StringUtils.isEmpty(importProject))	//需要导入外部项目配置，约定导入配置与当前配置在同一目录或与该项目同级目录
 		{
 			File importFile = new File(moduleFile.getParent(), importProject);
+			if(!importFile.exists())
+			{
+				String importProjectName = StringUtils.substringBefore(importProject, "-module");
+				importFile = new File(new File(moduleFile.getParentFile().getParent(), importProjectName), importProject);
+			}
+			if(!importFile.exists())
+			{
+				throw new BusiException("import file not found："+importFile.getPath());
+			}
 			this.init(importFile);
 		}
 		List<Element> domainEList = rootE.elements();
