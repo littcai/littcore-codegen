@@ -19,9 +19,9 @@ public class ModuleNode extends DefaultMutableTreeNode {
 	
 	private Object businessObject;	
 
-	public ModuleNode(String id, String name) {
+	public ModuleNode(String code, String title) {
 		super();
-		this.id = id;
+		this.id = code;
 		this.name = name;
 	}
 	

@@ -9,11 +9,6 @@ public class Func
 	private String code;
 	
 	private String fullCode; 
-
-	/**
-	 * 英文名称
-	 */
-	private String name; 
 	
 	/**
 	 * 标题.
@@ -65,20 +60,6 @@ public class Func
 	public void setTitle(String title)
 	{
 		this.title = title;
-	}
-
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	/**

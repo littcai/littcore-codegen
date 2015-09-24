@@ -29,11 +29,6 @@ public class Domain {
 	private String fullCode; 
 	
 	/**
-	 * 英文名称
-	 */
-	private String name; 
-	
-	/**
 	 * 显示名称
 	 */
 	private String title;
@@ -235,20 +230,6 @@ public class Domain {
 	 */
 	public void setIsHide(Boolean isHide) {
 		this.isHide = isHide;
-	}
-
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	/**

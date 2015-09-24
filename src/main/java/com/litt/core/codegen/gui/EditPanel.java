@@ -41,8 +41,6 @@ public class EditPanel extends JPanel {
 	private JButton btnDelete;
 	private JLabel lblCode;
 	private JTextField txtCode;
-	private JLabel lblName;
-	private JTextField txtName;
 	private JLabel lblTitle;
 	private JTextField txtTitle;
 	private JLabel lblIsHide;
@@ -219,15 +217,7 @@ public class EditPanel extends JPanel {
 		txtCode = new JTextField();
 		txtCode.setText("code");
 		formPanel.add(txtCode, "cell 1 2,growx");
-		txtCode.setColumns(10);
-		
-		lblName = new JLabel("Name:");
-		formPanel.add(lblName, "cell 0 3,alignx trailing");
-		
-		txtName = new JTextField();
-		txtName.setText("name");
-		formPanel.add(txtName, "cell 1 3,growx");
-		txtName.setColumns(10);
+		txtCode.setColumns(10);		
 		
 		lblTitle = new JLabel("Title:");
 		formPanel.add(lblTitle, "cell 0 4,alignx trailing");
@@ -348,8 +338,7 @@ public class EditPanel extends JPanel {
 			if("domain".equals(newModuleNodeType))
 			{
 				Domain domain = new Domain();
-				domain.setCode(this.txtCode.getText());
-				domain.setName(this.txtName.getText());
+				domain.setCode(this.txtCode.getText());				
 				domain.setTitle(this.txtTitle.getText());
 				domain.setPackageName(this.txtPackageName.getText());
 				domain.setParentPackageName(this.txtParentPackageName.getText());
@@ -360,8 +349,7 @@ public class EditPanel extends JPanel {
 				if("update".equals(opType))
 				{
 					manager.updateDomain(domain);
-					node.setId(this.txtCode.getText());
-					node.setName(this.txtName.getText());
+					node.setId(this.txtCode.getText());					
 					node.setBusinessObject(domain);
 					tree.updateUI();
 					//如果要同步其他语言版本，则同时删除其他版本上的同名节点
@@ -409,7 +397,6 @@ public class EditPanel extends JPanel {
 			{
 				Module module = new Module();
 				module.setCode(this.txtCode.getText());
-				module.setName(this.txtName.getText());
 				module.setTitle(this.txtTitle.getText());
 				module.setDescr(this.txtrDescr.getText());
 				module.setIsHide(this.chckbxIsHide.isSelected());
@@ -422,7 +409,6 @@ public class EditPanel extends JPanel {
 				{
 					manager.updateModule(module);
 					node.setId(this.txtCode.getText());
-					node.setName(this.txtName.getText());
 					node.setBusinessObject(module);
 					tree.updateUI();
 					//如果要同步其他语言版本，则同时删除其他版本上的同名节点
@@ -469,14 +455,12 @@ public class EditPanel extends JPanel {
 			{
 				Func func = new Func();
 				func.setCode(this.txtCode.getText());
-				func.setName(this.txtName.getText());
 				func.setTitle(this.txtTitle.getText());
 				func.setDescr(this.txtrDescr.getText());
 				if("update".equals(opType))
 				{
 					manager.updateFunc(func);
 					node.setId(this.txtCode.getText());
-					node.setName(this.txtName.getText());
 					node.setBusinessObject(func);
 					tree.updateUI();
 					//如果要同步其他语言版本，则同时删除其他版本上的同名节点
@@ -699,7 +683,6 @@ public class EditPanel extends JPanel {
         	this.renderFormAsDomain();
         	Domain domain = (Domain)businessObject;
         	this.txtCode.setText(domain.getCode());
-        	this.txtName.setText(domain.getName());
         	this.txtTitle.setText(domain.getTitle());        	
         	this.txtrDescr.setText(domain.getDescr());        	
         	this.chckbxIsHide.setSelected(domain.getIsHide());
@@ -714,7 +697,6 @@ public class EditPanel extends JPanel {
         	this.renderFormAsModule();
         	Module module = (Module)businessObject;
         	this.txtCode.setText(module.getCode());
-        	this.txtName.setText(module.getName());
         	this.txtTitle.setText(module.getTitle());        	
         	this.txtrDescr.setText(module.getDescr());        	
         	this.chckbxIsHide.setSelected(module.getIsHide());
@@ -730,7 +712,6 @@ public class EditPanel extends JPanel {
         	this.renderFormAsFunc();
         	Func func = (Func)businessObject;
         	this.txtCode.setText(func.getCode());
-        	this.txtName.setText(func.getName());
         	this.txtTitle.setText(func.getTitle());        	
         	this.txtrDescr.setText(func.getDescr());     
         }
@@ -738,7 +719,6 @@ public class EditPanel extends JPanel {
 	
 	private void resetForm() {
 		txtCode.setText("");
-        txtName.setText("");
         txtTitle.setText("");        	
         txtrDescr.setText("");        	
         chckbxIsHide.setSelected(false);
@@ -806,7 +786,7 @@ public class EditPanel extends JPanel {
 	 * @param func
 	 */
 	private void addFuncNode(ModuleNode moduleNode, Func func) {
-		ModuleNode funcNode = new ModuleNode(func.getCode(), func.getName());
+		ModuleNode funcNode = new ModuleNode(func.getCode(), func.getTitle());
 		funcNode.setBusinessObject(func);
 		moduleNode.add(funcNode);
 		
@@ -820,7 +800,7 @@ public class EditPanel extends JPanel {
 	 */
 	private ModuleNode addDomainNode(Domain domain,
 			DefaultMutableTreeNode parentNode) {
-		ModuleNode domainNode = new ModuleNode(domain.getCode(), domain.getName());
+		ModuleNode domainNode = new ModuleNode(domain.getCode(), domain.getTitle());
 		domainNode.setBusinessObject(domain);
 		parentNode.add(domainNode);
 		
@@ -834,7 +814,7 @@ public class EditPanel extends JPanel {
 	 * @return
 	 */
 	private ModuleNode addModuleNode(ModuleNode domainNode, Module module) {
-		ModuleNode moduleNode = new ModuleNode(module.getCode(), module.getName());
+		ModuleNode moduleNode = new ModuleNode(module.getCode(), module.getTitle());
 		moduleNode.setBusinessObject(module);
 		domainNode.add(moduleNode);
 		this.tree.updateUI();

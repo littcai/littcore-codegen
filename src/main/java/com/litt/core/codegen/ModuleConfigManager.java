@@ -62,7 +62,6 @@ public class ModuleConfigManager {
 		//将domain追加到父元素最后
 		Element domainE = parentE.addElement("domain");
 		domainE.addAttribute("code", code.substring(code.length()-2, code.length()));
-		domainE.addAttribute("name", domain.getName());
 		domainE.addAttribute("title", domain.getTitle());		
 		domainE.addAttribute("menuName", domain.getMenuName());
 		domainE.addAttribute("packageName", domain.getPackageName());
@@ -100,10 +99,6 @@ public class ModuleConfigManager {
 		
 		Element domainE = this.findByCode(code);
 		domainE.attribute("code").setText(code.substring(code.length()-2, code.length()));
-		if(domainE.attribute("name")!=null)	
-			domainE.attribute("name").setText(domain.getName());
-		else
-			domainE.addAttribute("name", domain.getName());
 		if(!isSync)	//非同步时才更新的属性
 		{	
 			domainE.attribute("title").setText(domain.getTitle());	
@@ -150,7 +145,6 @@ public class ModuleConfigManager {
 		//将domain追加到父元素最后		
 		Element domainE = parentE.addElement("module");
 		domainE.addAttribute("code", code.substring(code.length()-2, code.length()));
-		domainE.addAttribute("name", module.getName());
 		domainE.addAttribute("title", module.getTitle());		
 		domainE.addAttribute("menuName", module.getMenuName());	
 		domainE.addAttribute("descr", module.getDescr());
@@ -178,11 +172,7 @@ public class ModuleConfigManager {
 		String code = module.getCode();			
 		
 		Element domainE = this.findByCode(code);
-		domainE.attribute("code").setText(code.substring(code.length()-2, code.length()));
-		if(domainE.attribute("name")!=null)
-			domainE.attribute("name").setText(module.getName());
-		else
-			domainE.addAttribute("name", module.getName());
+		domainE.attribute("code").setText(code.substring(code.length()-2, code.length()));		
 		if(!isSync)	//非同步时才更新的属性
 		{		
 			domainE.attribute("title").setText(module.getTitle());		
@@ -231,7 +221,6 @@ public class ModuleConfigManager {
 		//将domain追加到父元素最后		
 		Element domainE = parentE.addElement("func");
 		domainE.addAttribute("code", code.substring(code.length()-2, code.length()));
-		domainE.addAttribute("name", func.getName());
 		domainE.addAttribute("title", func.getTitle());		
 		domainE.addAttribute("descr", func.getDescr());			
 		saveFile();
@@ -250,11 +239,7 @@ public class ModuleConfigManager {
 	{
 		String code = func.getCode();			
 		Element domainE = this.findByCode(code);
-		domainE.attribute("code").setText(code.substring(code.length()-2, code.length()));
-		if(domainE.attribute("name")!=null)	
-			domainE.attribute("name").setText(func.getName());
-		else
-			domainE.addAttribute("name", func.getName());
+		domainE.attribute("code").setText(code.substring(code.length()-2, code.length()));		
 		if(!isSync)	//非同步时才更新的属性
 		{	
 			domainE.attribute("title").setText(func.getTitle());

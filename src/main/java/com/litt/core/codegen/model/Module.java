@@ -23,14 +23,9 @@ import com.litt.core.util.ValidateUtils;
  */
 public class Module {
 	
-	private String code;
+	private String code; //编号，同时为英文名
 	
-	private String fullCode; 
-	
-	/**
-	 * 英文名称
-	 */
-	private String name; 
+	private String fullCode; 	//完整编号
 	
 	/**
 	 * 显示名称
@@ -44,6 +39,14 @@ public class Module {
 	private String tableName;
 
 	private String modelName;
+	
+	/**
+	 * 1：内部菜单
+	 * 2：iframe: 除导航菜单外都是iframe
+	 * 3：redirect：点击后重定向
+	 * 4：window：点击后打开新窗口，主要用于第三方应用
+	 */
+	private String menuType;
 	
 	private String menuName;
 	
@@ -232,20 +235,6 @@ public class Module {
 	}
 
 	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
 	 * @return the fullCode
 	 */
 	public String getFullCode() {
@@ -271,6 +260,20 @@ public class Module {
 	 */
 	public void setPosition(int position) {
 		this.position = position;
+	}
+
+	/**
+	 * @return the menuType
+	 */
+	public String getMenuType() {
+		return menuType;
+	}
+
+	/**
+	 * @param menuType the menuType to set
+	 */
+	public void setMenuType(String menuType) {
+		this.menuType = menuType;
 	}
 
 	

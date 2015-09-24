@@ -92,20 +92,17 @@ public class BaseModuleGen extends BaseGen {
 		}
 		else if(GenConstants.TAG_NAME_MODULE == tagName)	//类型为模块
 		{
-			logger.info("Parse module:{}, parent domain:{}", new Object[]{element.attributeValue("name"), parentDomain.getName()});
+			logger.info("Parse module:{}, parent domain:{}", new Object[]{element.attributeValue("code"), parentDomain.getFullCode()});
 			Module module = new Module();
 			boolean isHide = Utility.parseBoolean(element.attributeValue("isHide"), false);
 			boolean isMenu = Utility.parseBoolean(element.attributeValue("isMenu"), true);
 			int position = Utility.parseInt(element.attributeValue("position"));
 			String moduleCode = element.attributeValue("code");
-			String name = element.attributeValue("name");
-			moduleCode = StringUtils.isEmpty(moduleCode)?name:moduleCode;
 			String fullCode = StringUtils.isNumeric(parentDomain.getFullCode())?(parentDomain.getFullCode()+moduleCode):(parentDomain.getFullCode()+"."+moduleCode);
 			
 			module.setCode(moduleCode);
 			module.setFullCode(fullCode);
-			
-			module.setName(name);
+			module.setMenuType(element.attributeValue("menuType"));
 			module.setTitle(element.attributeValue("title"));
 			module.setDescr(Utility.trimNull(element.attributeValue("descr"),""));
 			module.setMenuName(element.attributeValue("menuName"));
@@ -123,12 +120,9 @@ public class BaseModuleGen extends BaseGen {
 				for (Element subE : subEList) {
 					Func func = new Func();
 					String funcCode = subE.attributeValue("code");
-					String funcName = subE.attributeValue("name");
-					funcCode = StringUtils.isEmpty(funcCode)?funcName:funcCode;
 					String funcFullCode = StringUtils.isNumeric(module.getFullCode())?(module.getFullCode()+funcCode):(module.getFullCode()+"."+funcCode);
 					func.setCode(funcCode);
 					func.setFullCode(funcFullCode);
-					func.setName(funcName);
 					func.setTitle(subE.attributeValue("title"));
 					func.setDescr(subE.attributeValue("descr"));
 					module.addFunc(func);
@@ -147,19 +141,16 @@ public class BaseModuleGen extends BaseGen {
 	 * @return
 	 */
 	private Domain parseDomain(Domain parentDomain, Element element, int index) {
-		logger.info("Parse domain:{}", new Object[]{element.attributeValue("name")});
+		logger.info("Parse domain:{}", new Object[]{element.attributeValue("code")});
 		
 		Domain domain = new Domain();
 		boolean isHide = Utility.parseBoolean(element.attributeValue("isHide"), false);
 		boolean isMenu = Utility.parseBoolean(element.attributeValue("isMenu"), true);
 		int position = Utility.parseInt(element.attributeValue("position"));
 		String code = element.attributeValue("code");
-		String name = element.attributeValue("name");
-		code = StringUtils.isEmpty(code)?name:code;
 		
 		domain.setCode(code);
 		domain.setFullCode(domain.getCode());
-		domain.setName(name);
 		domain.setTitle(element.attributeValue("title"));
 		domain.setDescr(Utility.trimNull(element.attributeValue("descr"),""));
 		domain.setMenuName(element.attributeValue("menuName"));
@@ -167,12 +158,18 @@ public class BaseModuleGen extends BaseGen {
 		domain.setParentPackageName(element.attributeValue("parentPackageName"));
 		domain.setIsMenu(isMenu);
 		domain.setIsHide(isHide);	
+		boolean inherit = Utility.parseBoolean(element.attributeValue("inherit"), true);
+		
+		
 		if(parentDomain!=null)
 		{
 			String fullCode = StringUtils.isNumeric(parentDomain.getCode())?(parentDomain.getCode()+domain.getCode()):(parentDomain.getCode()+"."+domain.getCode());
 			domain.setFullCode(fullCode);
-			domain.setPackageName(parentDomain.getPackageName());
-			domain.setParentPackageName(parentDomain.getParentPackageName());
+			if(inherit)
+			{
+				domain.setPackageName(parentDomain.getPackageName());
+				domain.setParentPackageName(parentDomain.getParentPackageName());
+			}
 		}
 		maxRootDomainIndex = index>maxRootDomainIndex?index:maxRootDomainIndex;
 		
