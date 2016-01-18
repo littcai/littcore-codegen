@@ -1,5 +1,5 @@
 BEGIN;
-DELETE FROM MENU;
+TRUNCATE TABLE MENU;
 <#list domainList as domain>
 -- domain:${domain.title}
 SET @TEMP_DOMAIN_SEQ = 0;

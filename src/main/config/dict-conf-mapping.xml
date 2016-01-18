@@ -37,6 +37,9 @@
     <field name="DictTypeName" type="java.lang.String">
     	<bind-xml name="name" node="attribute" />
     </field>
+    <field name="AlterMode" type="java.lang.Integer" required="false">
+    	<bind-xml name="alterMode" node="attribute" />
+    </field>
     <field name="DictParamList" type="com.litt.core.codegen.model.DictParam" collection="arraylist">
     	<bind-xml name="param"/>
     </field>    
