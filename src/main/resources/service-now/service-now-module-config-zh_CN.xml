@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+
+  <domain code="personal" title="个人" packageName="personal" parentPackageName="com.littcore.cloud.boot" name="Personal" menuName="" descr="个人门户，为用户提供个人事务管理及定制化功能" isHide="false" isMenu="true" position="-1" icon="fa fa-user">
+
+    <module code="myMessage" title="My Messages" descr="my messages" url="myMessage/index.do" menuName="消息通知" tableName="USER_MESSAGE" isHide="false" isMenu="true">      
+      <func code="query" title="查询" name="Query"/>
+      <func code="view" title="阅读"/>
+    </module>
+    <module code="myTaskTicket" title="My TaskTickets" descr="my taskTickets" url="myTaskTicket/index.do" menuName="我的工单" tableName="TASK_TICKET" isHide="false" isMenu="true">
+      <func code="add" name="新增" title="Add" descr=""/>
+      <func code="edit" name="编辑" title="Edit" descr=""/>
+      <func code="delete" name="删除" title="Delete" descr=""/>
+      <func code="query" title="查询" name="Query"/>
+    </module>
+    <module code="myAttachment" title="My Attachments" descr="my Attachments" url="myAttachment/index.do" menuName="我的文件" tableName="ATTACHMENT" isHide="false" isMenu="true">
+      <func code="add" name="新增" title="Add" descr=""/>
+      <func code="edit" name="编辑" title="Edit" descr=""/>
+      <func code="delete" name="删除" title="Delete" descr=""/>
+      <func code="query" title="查询" name="Query"/>
+    </module>
+  </domain>
+
+  <!-- system management for tenant -->
+  <domain code="system" title="系统管理" packageName="system" parentPackageName="com.littcore.cloud.boot" name="system" menuName="" descr="system management for tenant" isHide="false" isMenu="true" position="99" icon="fa fa-cogs">
+    <module code="tenant" title="空间管理" descr="Workspace Management" url="tenant/index.do" menuName="空间管理" tableName="TENANT" name="tenant">
+
+      <func code="edit" title="编辑"/>
+      <func code="lock" title="锁定" />
+      <func code="deactivate" title="注销" />      
+      <func code="query" title="查询"/>
+    </module>
+    <module code="platformMember" title="平台成员" descr="Member Management" url="platformMember/index.do" menuName="平台成员" tableName="TENANT_MEMBER">     
+      <func code="add" title="新增" name="Add"/>
+      <func code="edit" title="编辑" name="Edit"/>
+      <func code="delete" title="删除" name="Delete"/>
+      <func code="query" title="查询" name="Query"/>
+      <func code="freeze" title="冻结"/>
+      <func code="resume" title="恢复" name="Resume"/>
+      <func code="activate" title="激活" name="Activate"/>
+    </module>
+    <module code="tenantMember" title="客户成员" descr="Member Management" url="tenantMember/index.do" menuName="客户成员" tableName="TENANT_MEMBER">     
+      <func code="add" title="新增"/>
+      <func code="edit" title="编辑"/>
+      <func code="delete" title="删除"/>
+      <func code="query" title="查询"/>
+      <func code="freeze" title="冻结"/>
+      <func code="resume" title="恢复"/>
+      <func code="activate" title="激活"/>
+      <func code="validateRealName" title="实名认证"/>
+    </module>
+    <module code="userGroup" title="组织架构" descr="Group Management" url="userGroup/index.do" menuName="组织架构" tableName="USER_GROUP" name="UserGroup">     
+      <func code="add" title="新增" name="Add"/>
+      <func code="edit" title="编辑" name="Edit"/>
+      <func code="delete" title="删除" name="Delete"/>
+      <func code="query" title="查询" name="Query"/>
+      <func code="addMember" title="新增成员" name="AddMember"/>
+      <func code="deleteMember" title="删除成员" name="DeleteMember"/>
+    </module>
+    <module code="role" title="功能授权" descr="Role and privilege Management" url="role/index.do" menuName="功能授权" tableName="ROLE" name="role">     
+      <func code="add" title="新增" name="Add"/>
+      <func code="edit" title="编辑" name="Edit"/>
+      <func code="delete" title="删除" name="Delete"/>
+      <func code="resume" title="恢复" name="Resume"/>
+      <func code="query" title="查询" name="Query"/>
+    </module> 
+    <module code="tenantDictParam" name="tenantDictParam" title="参数字典" url="tenantDictParam/index.do"  descr="参数字典管理" tableName="TENANT_DICT_PARAM" menuName="参数字典">
+      <func code="add" title="新增" name="Add" descr=""/>
+      <func code="edit" title="编辑" name="Edit" descr=""/>
+      <func code="delete" title="删除" name="Delete" descr=""/>
+      <func code="resume" title="恢复"/>
+      <func code="query" title="查询" name="Query" descr=""/>
+    </module>  
+    <module code="tenantAutogenCode" title="编号管理" descr="自动编号生成" url="tenantAutogenCode/index.do" menuName="编号管理" tableName="AUTOGEN_CODE" name="tenantAutogenCode">
+      <func code="edit" title="编辑" name="Edit"/>      
+      <func code="query" title="查询" name="Query"/>
+    </module>
+    <module code="userBalance" name="userBalance" title="余额管理" url="userBalance/index.do"  descr="余额管理" tableName="USER_BALANCE" menuName="余额管理">
+      <func code="add" title="新增" name="Add" descr=""/>
+      <func code="edit" title="编辑" name="Edit" descr=""/>
+      <func code="delete" title="删除" name="Delete" descr=""/>
+      <func code="query" title="查询" name="Query" descr=""/>
+      <func code="check" title="审核" name="check"/>
+    </module>
+    <module code="district" name="district" title="区县管理" url="district/index.do"  descr="区县管理" tableName="DISTRICT" menuName="区县管理">
+      <func code="add" title="新增" name="Add" descr=""/>
+      <func code="edit" title="编辑" name="Edit" descr=""/>
+      <func code="delete" title="删除" name="Delete" descr=""/>
+      <func code="query" title="查询" name="Query" descr=""/>
+    </module>
+    <module code="userOpLog" name="userOpLog" title="操作日志" url="userOpLog/index.do"  descr="操作日志" tableName="USER_OP_LOG" menuName="操作日志">
+      <func code="query" title="查询" name="Query" descr=""/>
+    </module>  
+
+  </domain>  
+
+   <!-- 消息中心，作为基础模块，汇聚各种消息，放到最后 -->
+  <domain code="message" title="消息管理" packageName="message" parentPackageName="com.littcore.cloud.boot" name="message" menuName="" descr="" isHide="false" isMenu="true" position="98"  icon="fa fa-envelope">
+    <module code="affiche" title="公告" descr="系统公告管理" url="affiche/index.do" menuName="公告管理" tableName="AFFICHE" name="Affiche">
+      <func code="add" title="新增" name="Add" descr=""/>
+      <func code="edit" title="编辑" name="Edit" descr=""/>
+      <func code="delete" title="删除" name="Delete" descr=""/>
+      <func code="query" title="查询" name="Query" descr=""/>
+      <func code="view" title="查看"/>
+      <func code="publish" title="发布"/>
+    </module> 
+  </domain>
+
+  <domain title="工单管理" packageName="ticket" parentPackageName="com.nestwork.cloud.platform" code="ticket" menuName="" descr="" isHide="false" isMenu="true" icon="fa fa-tasks">      
+	<module title="任务管理" descr="Task Management" url="tkTask/index.do" menuName="任务管理" tableName="TK_TASK" code="tkTask" isHide="true" isMenu="false">
+      <func title="新增" code="add"/>
+      <func title="编辑" code="edit"/>
+      <func title="删除" code="delete"/>
+      <func title="查询" code="query"/>
+      <func title="恢复" code="resume"/>
+      <func title="执行" code="execute"/>
+      <func title="导入" code="imp"/>
+      <func title="导出" code="exp"/>
+    </module> 
+
+
+    <module title="新增工单" descr="Add ticket" url="tkTicket/add.do" menuName="新增工单" tableName="TK_TICKET" code="tkTicketAdd">
+      <func title="新增" code="add"/>
+    </module>
+    <module title="工单管理" descr="Ticket Management" url="tkTicket/index.do" menuName="工单管理" tableName="TK_TICKET" code="tkTicket">
+      <func title="新增" code="add"/>
+      <func title="编辑" code="edit"/>
+      <func title="删除" code="delete"/>
+      <func title="查询" code="query"/>
+      <func title="恢复" code="resume"/>
+      <func title="执行" code="execute"/>
+      <func title="导入" code="imp"/>
+      <func title="导出" code="exp"/>
+      <func title="确认支付" code="confirmPay"/>
+    </module> 
+    <module title="工单项管理" descr="Ticket Management" url="tkTicketItem/index.do" menuName="工单管理" tableName="TK_TICKET_ITEM" code="tkTaskTicketItem" isHide="true" isMenu="false">
+      <func title="查询" code="query"/>
+    </module> 
+    <module title="工单检查项" descr="Ticket Management" url="tkTicketConfirmItem/index.do" menuName="工单检查项" tableName="TK_TICKET_CONFIRM_ITEM" code="tkTicketConfirmItem" isHide="true" isMenu="false">
+      <func title="查询" code="query"/>
+    </module> 
+    <module title="综合查询" descr="Ticket Query" url="tkTicket/query.do" menuName="综合查询" tableName="TK_TICKET" code="tkTicketQuery">
+      <func title="查询" code="query"/>
+      <func title="导出" code="exp"/>
+    </module> 
+
+    <module title="服务号管理" descr="服务号管理" url="tkVirtualPhone/index.do" menuName="服务号管理" tableName="TK_VIRTUAL_PHONE" code="tkVirtualPhone">
+      <func title="新增" code="add"/>
+      <func title="编辑" code="edit"/>
+      <func title="删除" code="delete"/>
+      <func title="查询" code="query"/>
+    </module>   
+
+    <module title="服务号通话记录" descr="服务号通话记录" url="tkVirtualPhoneRecord/index.do" menuName="服务号通话记录" tableName="TK_VIRTUAL_PHONE_RECORD" code="tkVirtualPhoneRecord" isHide="true" isMenu="false">
+      <func title="查询" code="query"/>
+    </module>    
+    
+  </domain>
+
+  <domain code="crm" title="客户管理" packageName="crm" parentPackageName="com.littcore.cloud.boot" menuName="" descr="" isHide="false" isMenu="true"  icon="fa fa-users">    
+    <module code="customer" title="客户管理" descr="Customer Management" url="customer/index.do" menuName="客户" tableName="CUSTOMER" name="Customer">
+      <func code="add" title="新增"/>
+      <func code="edit" title="编辑"/>
+      <func code="delete" title="删除"/>
+      <func code="resume" title="恢复"/>
+      <func code="query" title="查询"/>
+      <func code="editTenant" title="空间管理"/>
+    </module>
+    <module code="custContacts" title="联系人管理" descr="Customer Contacts Management" url="custContacts/index.do" menuName="联系人" tableName="CUST_CONTACTS" name="Contacts" isHide="false" isMenu="true">
+      <func code="add" title="新增"/>
+      <func code="edit" title="编辑" />
+      <func code="delete" title="删除" />
+      <func code="query" title="查询" />
+    </module>
+  </domain>  
+
+
+  <domain code="product" title="基础信息" menuName="平台" packageName="platform" parentPackageName="com.nestwork.cloud.platform" descr="" isHide="false" isMenu="true" icon="fa fa-bar-chart">
+    <module title="产品服务" url="psProduct/index.do" menuName="产品服务" tableName="PS_PRODUCT" code="psProduct">     
+      <func code="query" title="查询" />
+    </module>
+
+  </domain>  
+
+  <domain code="storage" title="库存管理" menuName="库存管理" packageName="storage" parentPackageName="com.nestwork.cloud.platform" descr="" isHide="false" isMenu="true" icon="fa fa-bar-chart">
+
+    <module title="入库管理" url="stInventoryIn/index.do" menuName="入库管理" tableName="ST_INVENTORY_IN" code="stInventoryIn">     
+      <func code="add" title="新增"/>
+      <func code="edit" title="编辑"/>
+      <func code="delete" title="删除"/>
+      <func code="query" title="查询" />
+      <func code="imp" title="导入" />
+    </module>
+
+    <module title="入库明细" url="stInventoryInItem/index.do" menuName="入库明细" tableName="ST_INVENTORY_IN_ITEM" code="stInventoryInItem">     
+      <func code="add" title="新增"/>
+      <func code="edit" title="编辑"/>
+      <func code="delete" title="删除"/>
+      <func code="query" title="查询" />
+    </module>
+
+  </domain>  
+
+
+  
+</config>

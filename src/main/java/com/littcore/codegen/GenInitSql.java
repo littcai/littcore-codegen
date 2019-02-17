@@ -79,7 +79,10 @@ public class GenInitSql extends BaseModuleGen
 		//GenInitSql gen = new GenInitSql("classpath:cidp2.0_module_config.xml", GenConstants.DATABASE_TYPE_MYSQL5);
 		//GenInitSql gen = new GenInitSql("classpath:cidp2.0_module_config.xml", GenConstants.DATABASE_TYPE_SQLSERVER2000);
 		//GenInitSql gen = new GenInitSql("classpath:littcrm_module_config.xml", GenConstants.DATABASE_TYPE_ORACLE);
-		GenInitSql gen = new GenInitSql("", "classpath:conf/invoicing-module-config.xml", "D:\\", DatabaseType.mysql, LangType.en);
+
+
+
+		GenInitSql gen = new GenInitSql("", "classpath:project/service-now/service-now-module-config-en.xml", "D:\\", DatabaseType.mysql, LangType.en);
 		//GenInitSql gen = new GenInitSql("classpath:conf/warehouse-module-config-en.xml", GenConstants.DATABASE_TYPE_MYSQL);
 		
 		//GenInitSql gen = new GenInitSql("classpath:conf/trannms-2.0-module-config-en.xml", GenConstants.DATABASE_TYPE_MYSQL);

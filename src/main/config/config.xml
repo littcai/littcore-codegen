@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-config>
-	<project code="trannms-1.0"></project>
-	<project code="trannms-2.0"></project>
-	<project code="trannms-2.3"></project>
-	<project code="invoicing"></project>
-	<project code="saap"></project>
+	<project code="littcore-boot"></project>
+	<project code="service-now"></project>
+	<project code="opsailing"></project>
+	<project code="gsa-cargo"></project>
 </project-config>

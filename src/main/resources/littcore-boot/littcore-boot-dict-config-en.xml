@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dict import="saap-dict-config-en.xml">
+
+  <module table="USER_WORK">
+    <type code="userWork-specTags" name="用户特长" column="SPEC_TAGS" title="用户特长" alterMode="2">
+      <param value="1" content="台式机维修" default="true" remark=""/>
+      <param value="2" content="笔记本维修" default="true" remark=""/>
+      <param value="3" content="服务器维修" default="true" remark=""/>
+      <param value="4" content="网络设备维修" remark=""/>
+    </type> 
+  </module> 
+
+  <module table="TENANT_MEMBER">
+    <type code="tenantMember-memberType" name="memberType" column="MEMBER_TYPE" title="Member Type">
+      <param value="1" content="一般用户" default="true" remark=""/>
+      <param value="2" content="外部客户" remark=""/>
+    </type>     
+    <type code="tenantMember-status" name="Status" column="STATUS">
+      <param value="0" content="尚未认证" default="true" remark=""/>
+      <param value="1" content="正常" />
+      <param value="-1" content="已锁定" remark=""/>
+      <param value="-2" content="已删除" remark=""/>
+    </type>
+  </module> 
+  
+  <!-- ********************************  ********************************  -->
+
+  <module table="COUNTRY">
+		<type code="country-continentCode" name="大洲" column="CONTINENT_CODE">			
+			<param value="AS" content="亚洲" default="true"/>	
+      <param value="OC" content="大洋洲"/>
+      <param value="ME" content="中东/西亚"/>
+      <param value="IP" content="印巴"/>
+      <param value="AF" content="非洲"/>
+			<param value="EU" content="欧洲"/>
+			<param value="NA" content="北美洲"/>
+			<param value="SA" content="南美洲"/>
+		</type>	
+  </module>  	
+
+
+  <module table="AS_ASSET_INFO">
+    <type code="asAssetInfo-brand" name="品牌" column="BRAND" alterMode="2">        
+      <param value="1" content="CISCO" default="true"/>  
+      <param value="2" content="HUAWEI" />
+      <param value="3" content="H3C" />
+      <param value="4" content="IBM" />
+    </type>   
+  </module>
+  
+  <module table="SA_CONTRACT_ITEM">
+    <type code="saContractItem-bizType" name="销售合同-业务类型" column="BIZ_TYPE">        
+      <param value="1" content="安装集成" default="true"/>  
+      <param value="2" content="设备销售" />
+      <param value="3" content="设备租赁" />
+      <param value="4" content="设备维保" />
+      <param value="5" content="设备运维" />
+      <param value="6" content="线路" />
+      <param value="7" content="人力资源" />
+      <param value="8" content="仓库租赁" />
+      <param value="9" content="SLA产品保证" />
+      <param value="10" content="价保" />
+    </type>   
+  </module>
+ 
+	
+
+</dict>

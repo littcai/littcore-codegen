@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dict >
+    <module table="SYSTEM_INFO">
+        <type code="0002" name="Gender" column="GENDER">
+            <param value="0" content="未知" default="true" remark=""/>
+            <param value="1" content="男" remark=""/>
+            <param value="2" content="女" remark=""/>
+        </type>
+        <type code="0003" name="Locale" column="LOCALE">
+            <param value="en_US" content="英语" default="true" remark=""/>
+            <param value="zh_CN" content="简体中文" remark=""/>
+        </type>
+        <type code="0004" name="Timezone" column="TIMEZONE">
+            <param value="-12" content="-12" default="true" remark=""/>
+            <param value="-11" content="-11" remark=""/>
+            <param value="-10" content="-10" remark=""/>
+            <param value="-9" content="-9" remark=""/>
+            <param value="-8" content="-8" remark=""/>
+            <param value="-7" content="-7" remark=""/>
+            <param value="-6" content="-6" remark=""/>
+            <param value="-5" content="-5" remark=""/>
+            <param value="-4" content="-4" remark=""/>
+            <param value="-3" content="-3" remark=""/>
+            <param value="-2" content="-2" remark=""/>
+            <param value="-1" content="-1" remark=""/>
+            <param value="0" content="0" remark=""/>
+            <param value="1" content="+1" remark=""/>
+            <param value="2" content="+2" remark=""/>
+            <param value="3" content="+3" remark=""/>
+            <param value="4" content="+4" remark=""/>
+            <param value="5" content="+5" remark=""/>
+            <param value="6" content="+6" remark=""/>
+            <param value="7" content="+7" remark=""/>
+            <param value="8" content="+8" remark=""/>
+            <param value="9" content="+9" remark=""/>
+            <param value="10" content="+10" remark=""/>
+            <param value="11" content="+11" remark=""/>
+            <param value="12" content="+12" remark=""/>
+            <param value="13" content="+13" remark=""/>
+        </type>
+        <type code="0005" name="Theme" column="THEME">
+            <param value="default" content="default" default="true" remark=""/>
+            <param value="office" content="office" remark=""/>
+        </type>
+
+        <type code="currencyType" name="币种" column="CURRENCY_TYPE">
+            <param value="CNY" content="人民币" default="true" remark=""/>
+            <param value="USD" content="美元" remark=""/>
+            <param value="JPY" content="日元" remark=""/>
+            <param value="EUR" content="欧元" remark=""/>
+            <param value="GBP" content="英镑" remark=""/>
+            <param value="HKD" content="港币" remark=""/>
+            <param value="KRW" content="韩元" remark=""/>
+            <param value="AUD" content="澳元" remark=""/>
+            <param value="CHF" content="瑞士法郎" remark=""/>
+            <param value="SGD" content="新币" remark=""/>
+            <param value="CAD" content="加拿大元" remark=""/>
+            <param value="NZD" content="新西兰元" remark=""/>
+        </type>
+    </module>
+
+
+    <module table="TENANT_MEMBER">
+        <type code="tenantMember-memberType" name="memberType" column="MEMBER_TYPE" title="Member Type">
+            <param value="1" content="一般用户" default="true" remark=""/>
+            <param value="2" content="外部客户" remark=""/>
+        </type>
+        <type code="tenantMember-status" name="Status" column="STATUS">
+            <param value="0" content="尚未认证" default="true" remark=""/>
+            <param value="1" content="正常" />
+            <param value="-1" content="已锁定" remark=""/>
+            <param value="-2" content="已删除" remark=""/>
+        </type>
+    </module>
+
+    <!-- Affiche -->
+    <module table="affiche">
+        <type code="affiche-type" name="通告类型" column="TYPE" title="类型" alterMode="2">
+            <param value="1" content="公告" default="true" remark=""/>
+            <param value="2" content="新闻" remark=""/>
+            <param value="3" content="通知" remark=""/>
+        </type>
+    </module>
+
+    <module table="CUSTOMER">
+        <type code="customer-type" name="Customer Type" column="TYPE">
+            <param value="1" content="销售客户" default="true" />
+            <param value="2" content="供应商" />
+            <param value="3" content="制造商" />
+            <param value="4" content="竞争对手" />
+            <param value="5" content="合作伙伴" />
+            <param value="6" content="代理商" />
+            <param value="7" content="公关媒体" />
+            <param value="99" content="其他" />
+        </type>
+        <type code="customer-grade" name="客户等级" column="GRADE" >
+            <param value="1" content="1 星" default="true" />
+            <param value="2" content="2 星" />
+            <param value="3" content="3 星" />
+            <param value="4" content="4 星" />
+            <param value="5" content="5 星" />
+        </type>
+        <type code="customer-status" name="status" column="STATUS">
+            <param value="1" content="潜在" default="true" />
+            <param value="2" content="有意向" />
+            <param value="3" content="失败" />
+            <param value="4" content="已流失" />
+            <param value="5" content="已成交" />
+            <param value="6" content="维护" />
+            <param value="7" content="重点维护" />
+        </type>
+        <type code="customer-contractApplyStatus" name="申请状态" column="CONTRACT_APPLY_STATUS">
+            <param value="0" content="尚未申请" default="true" />
+            <param value="1" content="申请审核中" />
+            <param value="2" content="审核通过" />
+            <param value="3" content="审核驳回" />
+        </type>
+    </module>
+  
+  <!-- ********************************  ********************************  -->
+
+
+  <module table="COUNTRY">
+    <type code="country-continentCode" name="大洲" column="CONTINENT_CODE">     
+      <param value="AS" content="亚洲" default="true"/> 
+      <param value="OC" content="大洋洲"/>
+      <param value="ME" content="中东/西亚"/>
+      <param value="IP" content="印巴"/>
+      <param value="AF" content="非洲"/>
+      <param value="EU" content="欧洲"/>
+      <param value="NA" content="北美洲"/>
+      <param value="SA" content="南美洲"/>
+    </type> 
+  </module>   
+
+  <module table="FLIGHT_ROUTING">
+    <type code="flightRouting-packageType" name="包装类型" column="PACKAGE_TYPE">        
+      <param value="1" content="散货" default="true"/>  
+      <param value="2" content="托盘" />
+      <param value="3" content="散货/托盘" />
+    </type>   
+  </module>
+
+  <module table="CONTAINER_BOX">
+    <type code="containerBox-type" name="箱种" column="TYPE" alterMode="2">        
+      <param value="1" content="AMA" default="true"/>  
+      <param value="2" content="AMF" />
+      <param value="3" content="ALF" />
+    </type>   
+  </module>  
+
+
+  <module table="TRANSPORT_ORDER">    
+    <type code="transportOrder-orderType" name="订单类型" column="ORDER_TYPE">       
+      <param value="GENERAL" content="普货" default="true"/> 
+      <param value="HEAVY" content="重货"/>
+      <param value="EXPRESS" content="快件"/>
+      <param value="DANGER" content="危险品"/>
+      <param value="FRESH" content="生鲜"/>
+    </type>  
+
+    <type code="transportOrder-remark" name="常用备注" column="REMARK" alterMode="2">       
+      <param value="1" content="备注1" default="true"/> 
+      <param value="2" content="备注2" /> 
+      <param value="3" content="备注3" /> 
+    </type>  
+  </module>  
+
+
+  <module table="ORDER_COMPENSATE">    
+    <type code="orderCompensate-causeType" name="索赔类型" column="CAUSE_TYPE">       
+      <param value="1" content="货物破损" default="true"/> 
+      <param value="2" content="货物丢失"/>
+    </type>  
+  </module> 
+
+
+  <module table="ADJUSTMENT_BILL">    
+    <type code="adjustmentBill-category" name="调节类型" column="CATEGORY">       
+      <param value="1" content="奖金" default="true"/> 
+      <param value="2" content="罚金"/>
+    </type>  
+    <type code="adjustmentBill-costType" name="财务类型" column="COST_TYPE">       
+      <param value="1" content="增项" default="true"/> 
+      <param value="2" content="减项"/>
+    </type>  
+  </module> 
+
+  <module table="EMPLOYEE_PAYROLL">    
+    <type code="employeePayroll-incomeType" name="收入类型" column="INCOME_TYPE">       
+      <param value="1" content="工资" default="true"/> 
+      <param value="2" content="报销"/>
+      <param value="3" content="奖金"/>
+      <param value="4" content="罚金"/>
+    </type>  
+    
+  </module> 
+
+
+   <module table="BANK_TRANSACTION">    
+    <type code="bankTransaction-tradeType" name="交易类型" column="TRADE_TYPE">       
+      <param value="1" content="转入" default="true"/> 
+      <param value="2" content="转出"/>
+    </type>  
+    
+  </module> 
+
+
+</dict>

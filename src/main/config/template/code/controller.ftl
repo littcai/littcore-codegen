@@ -2,26 +2,31 @@ package ${domain.parentPackageName}.${domain.packageName}.web;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.beanutils.BeanUtils;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.littcore.cloud.core.exception.BusiException;
+import com.littcore.cloud.core.module.annotation.Func;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.littcore.cloud.boot.system.vo.LoginUserVo;
+import com.littcore.cloud.boot.util.LoginUtils;
 import ${domain.parentPackageName}.${domain.packageName}.po.${module.className};
-import ${domain.parentPackageName}.${domain.packageName}.service.impl.${module.className}ServiceImpl;
+import ${domain.parentPackageName}.${domain.packageName}.service.${module.className}Service;
 
-import com.litt.core.dao.page.IPageList;
-import com.litt.core.common.Utility;
-import com.litt.core.dao.ql.PageParam;
-import com.litt.core.module.annotation.Func;
-import com.litt.core.web.mvc.action.BaseController;
-import com.litt.core.web.plugin.jqgrid.GridUtils;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * 
@@ -34,137 +39,113 @@ import com.litt.core.web.plugin.jqgrid.GridUtils;
  * @since ${gobal.date}
  * @version 1.0
  */
-@Controller
-public class ${module.className}Controller extends BaseController
+@RestController
+@RequestMapping("/mgr/${domain.packageName}/${module.instanceName}")
+public class ${module.className}MgrController
 {
-	private final static Logger logger = LoggerFactory.getLogger(${module.className}Controller.class);
+	private final static Logger logger = LoggerFactory.getLogger(${module.className}MgrController.class);
 
 	@Resource
-	private I${module.className}Service ${module.instanceName}Service;
-	
-	/**
-	 * default page.
-	 * 
-	 * @param request the request
-	 * @param respnose the respnose
-	 * 
-	 * @return ModelAndView
-	 */	
-	@RequestMapping 
-	public ModelAndView index(WebRequest request, ModelMap modelMap)
-	{	
-		//get params from request
-		String name = request.getParameter("name");	
-					
-		//return params to response
-		modelMap.addAttribute("name", name);		
-        return new ModelAndView("/${domain.packageName}/${module.instanceName}/list");
-	}   
-	
-	/**
-	 * Get Page Grid.
-	 * 
-	 * @param request the request
-	 * @param modelMap the model map
-	 * 
-	 * @return the model and view
-	 */
-	@RequestMapping
-	public ModelAndView pageGrid(WebRequest request, ModelMap modelMap) 
-	{
-		//get params from request		
-		String name = request.getParameter("name");
-		
-		//package the params
-		PageParam pageParam = GridUtils.getPageParam(request);
-		pageParam.addCond("name", name);	
-				
-		//Get page result
-		IPageList page = ${module.instanceName}Service.listPage(pageParam);		
-		GridUtils.setGrid(page, modelMap);
-		return new ModelAndView("jsonView");		
-	}   
-	
-	/**
-	 * Add Page.
-	 * 
-	 * @return ModelAndView
-	 */	
-	@RequestMapping
-	public ModelAndView add() 
-	{        
-        return new ModelAndView("/${domain.packageName}/${module.instanceName}/add");
+	private ${module.className}Service ${module.instanceName}Service;
+
+
+	@Func(funcCode="query", moduleCode="${module.fullCode}", enableLog=false) 
+	@ApiOperation(value = "分页查询")
+    @GetMapping("/selectByPage")
+    public IPage<${module.className}> selectByPage(
+            @ApiParam(name = "name", value = "名称") @RequestParam(required = false) String name
+            , @ApiParam(name = "pageSize", value = "默认10, 分页信息每页记录数") @RequestParam(required = false, defaultValue = "10") Integer pageSize
+            , @ApiParam(name = "pageNumber", value = "默认1, 分页信息起始页") @RequestParam(required = false, defaultValue = "1") Integer pageNumber) {
+        Page page = new Page(pageNumber, pageSize);
+        Map<String, Object> params = new HashMap<>();
+        //params.put("name", name);
+ 
+
+        IPage<${module.className}> result = ${module.instanceName}Service.selectByPage(page, params);
+        return result;
+    }
+
+	@ApiOperation("添加")
+    @RequestMapping(value = "/save", method = {RequestMethod.GET,RequestMethod.POST})
+    public void save(
+    	<#assign ignoreColumns = ['id', 'tenantId', "createBy", "createDatetime", 'updateBy', 'updateDatetime', 'deleted'] />
+		<#list columnList as column>
+			<#if !_StringUtils.contains(column.humpName, ignoreColumns) >	
+		 <#if column_index gt 2>,</#if>	@ApiParam(value = "${column.comment}") @RequestParam${column.nullable?string("(required = false)","")} ${column.javaType} ${column.humpName}
+		 </#if>
+		</#list>
+	) {
+
+		long tenantId = LoginUtils.getTenantId();
+		long createBy = LoginUtils.getLoginOpId();
+		LocalDateTime createDatetime = LocalDateTime.now();
+		${module.className} ${module.instanceName} = new ${module.className}();
+	<#assign ignoreColumns = ['id', 'updateBy', 'updateDatetime', 'deleted'] />
+	<#list columnList as column>
+		<#if !_StringUtils.contains(column.humpName, ignoreColumns) >	
+		${module.instanceName}.set${_StringUtils.hump(column.name, true)}(${column.humpName});
+		</#if>
+	</#list>
+
+        ${module.instanceName}Service.save(${module.instanceName});
+
     }
 	
-	/**
-	 * Edit Page.
-	 * 
-	 * @param id 
-	 * 
-	 * @return ModelAndView
-	 */
-	@RequestMapping 
-	public ModelAndView edit(@RequestParam Integer id) 
-	{ 
-		${module.className} ${module.instanceName} = ${module.instanceName}Service.load(id);		
-        return new ModelAndView("/${domain.packageName}/${module.instanceName}/edit").addObject("${module.instanceName}", ${module.instanceName});
-    }	
-    
-	/**
-	 * Show Page.
-	 * 
-	 * @param id 
-	 * 
-	 * @return ModelAndView
-	 */
-	@RequestMapping 
-	public ModelAndView show(@RequestParam Integer id) 
-	{ 
-		${module.className} ${module.instanceName} = ${module.instanceName}Service.load(id);		
-        return new ModelAndView("/${domain.packageName}/${module.instanceName}/show").addObject("${module.instanceName}", ${module.instanceName});
-    }   
-    
+
+<#assign ignoreColumns = ["id", "tenantId", "createBy", "createDatetime", 'updateBy', 'updateDatetime', 'deleted'] />
+    @Func(funcCode="edit", moduleCode="${module.fullCode}")
+    @ApiOperation("修改")
+    @RequestMapping(value = "/update", method = {RequestMethod.GET,RequestMethod.POST})
+    public void update(@ApiParam(value = "ID") @RequestParam Long id    	
+        <#list columnList as column>
+		<#if !_StringUtils.contains(column.humpName, ignoreColumns) >, @ApiParam(value = "${column.comment}") @RequestParam${column.nullable?string("(required = false)","")} ${column.javaType} ${column.humpName}
+		</#if>
+		</#list>
+	) {
+
+		long tenantId = LoginUtils.getTenantId();
+		long updateBy = LoginUtils.getLoginOpId();
+		LocalDateTime updateDatetime = LocalDateTime.now();
+		${module.className} ${module.instanceName} = ${module.instanceName}Service.load(id);
+	<#assign ignoreColumns = ['id', 'tenantId', 'createBy', 'createDatetime', 'deleted'] />
+	<#list columnList as column>
+		<#if !_StringUtils.contains(column.humpName, ignoreColumns) >
+		${module.instanceName}.set${_StringUtils.hump(column.name, true)}(${column.humpName});
+		</#if>
+	</#list>
+
+        ${module.instanceName}Service.update(${module.instanceName});
+
+    }
+
     /**
-	 * Save.
-	 * @param request 
-	 * @param modelMap
-	 * @throws Exception 
-	 */
-	@Func(funcCode="01",moduleCode="${module.code}")
-	@RequestMapping 
-	public void save(WebRequest request, ModelMap modelMap) throws Exception
-	{	
-		${module.className} ${module.instanceName} = new ${module.className}();
-		BeanUtils.populate(${module.instanceName}, request.getParameterMap());			
-		${module.instanceName}Service.save(${module.instanceName});
-	}
-	
-	/**
-	 * Update.
-	 * @param request 
-	 * @param modelMap
-	 * @throws Exception 
-	 */
-	@Func(funcCode="02",moduleCode="${module.code}")
-	@RequestMapping 
-	public void update(WebRequest request, ModelMap modelMap) throws Exception
-	{
-		${module.className} ${module.instanceName} = ${module.instanceName}Service.load(Utility.parseInt(request.getParameter("id")));
-		BeanUtils.populate(${module.instanceName}, request.getParameterMap());
-		${module.instanceName}Service.update(${module.instanceName});
-	}
-	
-	/**
 	 * Delete.
 	 * @param id id
 	 * @throws Exception 
 	 */
-	@Func(funcCode="03",moduleCode="${module.code}")
-	@RequestMapping 
-	public void delete(@RequestParam Integer id) throws Exception
+	@Func(funcCode="delete",moduleCode="${module.fullCode}")
+	@ApiOperation("删除")
+	@RequestMapping(value = "/delete", method = {RequestMethod.GET,RequestMethod.POST})
+	public void delete(@ApiParam(value = "ID") @RequestParam Long id) 
 	{
 		${module.instanceName}Service.delete(id);
 	}
 
+	@Func(funcCode="delete", moduleCode="${module.fullCode}")
+    @ApiOperation("批量删除")
+    @RequestMapping(value = "/deleteBatch", method = {RequestMethod.GET,RequestMethod.POST})
+    public void deleteBatch(@ApiParam(value = "IDs") @RequestParam(name="ids") Long[] ids){
+        if (ids == null || ids.length==0) {
+            throw new BusiException("请至少选择一项！");
+        }
 
+        ${module.instanceName}Service.deleteBatch(ids);
+    }
+	
+
+    @ApiOperation(value = "根据主键查询")
+    @RequestMapping(value = "/load", method = {RequestMethod.POST, RequestMethod.GET})
+    public ${module.className} load(@ApiParam(value = "id") @RequestParam long id){
+        return ${module.instanceName}Service.load(id);
+    }
 }

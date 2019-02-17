@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import com.littcore.codegen.gui.Gui;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.io.IOUtils;
@@ -68,9 +69,19 @@ public class BaseGen {
 	 */
 	private void initFreemaker() throws TemplateException,IOException,ConfigurationException
 	{
+		File projectDir = new File(projectPath, "template");
+		if(!projectDir.exists())
+		{
+			//
+			projectDir = new File(Gui.HOME_PATH, "template");
+			if(!projectDir.exists())
+			{
+				projectDir = new File(this.getClass().getResource("/template").getPath());
+			}
+		}
 		freemarkerCfg = new Configuration();
 		freemarkerCfg.setClassForTemplateLoading(this.getClass(), "/");
-		freemarkerCfg.setDirectoryForTemplateLoading(new File(projectPath, "template"));
+		freemarkerCfg.setDirectoryForTemplateLoading(projectDir);
 		BeansWrapper wrapper = (BeansWrapper)BeansWrapper.BEANS_WRAPPER;   
 		wrapper.setExposureLevel(BeansWrapper.EXPOSE_ALL);
 		TemplateHashModel tempStatics = wrapper.getStaticModels();

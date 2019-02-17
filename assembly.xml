@@ -33,6 +33,7 @@
 			<filtered>true</filtered>		
 			<includes>
 				<include>*.*</include>
+				<include>**/*</include>
 			</includes>
 		</fileSet>					
 		<fileSet>
@@ -51,6 +52,14 @@
 			<includes>				
 				<include>*.*</include>				
 			</includes>
-		</fileSet>		
+		</fileSet>
+		<fileSet>
+			<directory>src/main/resources</directory>
+			<outputDirectory>project</outputDirectory>
+			<filtered>true</filtered>
+			<includes>
+				<include>**/*</include>
+			</includes>
+		</fileSet>
 	</fileSets>	
 </assembly>

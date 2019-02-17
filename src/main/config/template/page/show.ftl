@@ -1,25 +1,39 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ include file="/common/common.inc"%>
-<%@ include file="/common/operator_login.inc"%>
-<%@ include file="/common/taglibs.inc"%>
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-	<title>查看${module.title }</title>
+<%@ include file="/common/common.jspf"%>
+<%@ include file="/common/taglibs.jspf"%>
+<html lang="en">
+  <head>		
   </head>
-  <body class="ui-main">		 
-	<form name="theform" method="post" action="show" class="ui-form">			
-		<fieldset>	
-			<legend>编辑</legend>					
-			<table class="ui-form-content">	
-				<#list columnList as column>
-				<tr>					
-					<th>${column.comment}:</th>
-					<td>${'$'}{${module.instanceName}.${_StringUtils.hump(column.name, false)}}</td>
-				</tr>	
-				</#list>												
-			</table>
-		</fieldset>					
-	</form>
+  <body>   
+  <form id="theform" action="show.do" method="post" class="form-horizontal">
+    <input type="hidden" name="id" value="${'$'}{${module.instanceName}.id}" />
+    <fieldset>
+      <legend><s:message code="${module.instanceName}.ui.fieldset.base" /></legend>
+	<#if table??>
+	<#list table.columnList as column>
+	<#if (column_index%2)==0>
+      <div class="row-fluid">
+	</#if>	
+        <div class="span6">
+	  <div class="control-group">
+	    <label class="control-label" for="${module.instanceName}.${column.humpName}"><s:message code="${module.instanceName}.${column.humpName}" /></label>
+	    <div class="controls">
+	      <input id="${module.instanceName}.${column.humpName}" name="${column.humpName}" type="text" value="<c:out values='${'$'}{${module.instanceName}.${column.humpName}}' />" readonly="readonly" />
+	    </div>
+	  </div>
+	</div>								
+	<#if ((column_index+1)%2)==0 || (column_index+1)==table.columnList?size>
+      </div>
+	</#if>
+	</#list>
+	</#if>	
+    </fieldset>					
+						
+    <div class="form-actions">					
+      <button type="button" class="btn" onclick="history.back();"><s:message code="btn.cancel" /></button>
+    </div>					
+				
+  </form>		  
   </body>	
 </html>

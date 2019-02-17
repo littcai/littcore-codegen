@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import com.littcore.common.Utility;
 import com.littcore.util.PropertiesUtils;
 import com.littcore.util.ResourceUtils;
 
@@ -18,13 +19,19 @@ import com.littcore.util.ResourceUtils;
  *
  */
 public class Gui extends JFrame {
-	
+
+	public static boolean HOME_PATH_ENABLED = false;
 	public static String HOME_PATH = "D:\\codegen";
 	
 	public Gui() {
 		try {
 			Properties props = PropertiesUtils.loadProperties(ResourceUtils.getFile("classpath:init.properties"));
-			HOME_PATH = props.getProperty("HOME_PATH");
+			HOME_PATH = this.getClass().getResource("/").getPath();
+			HOME_PATH_ENABLED = Utility.parseBoolean(props.getProperty("HOME_PATH_ENABLED", "FALSE"));
+			if(HOME_PATH_ENABLED)
+			{
+				HOME_PATH = props.getProperty("HOME_PATH");
+			}
 			
 //			File configFile =  new File(Gui.HOME_PATH, "config.xml");	
 //			if(!configFile.exists())
