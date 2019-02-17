@@ -12,4 +12,4 @@ echo %JAVA_OPTS%
 
 echo %jarFileName%...
 
-java %JAVA_OPTS% -cp "../conf;%jarFileName%.jar" com.litt.core.codegen.gui.Gui
+java %JAVA_OPTS% -cp "../conf;%jarFileName%.jar" com.littcore.codegen.gui.Gui

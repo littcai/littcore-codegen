@@ -3,16 +3,16 @@
                          "http://castor.org/mapping.dtd">
 <mapping>
 	<class
-		name="com.litt.core.codegen.model.DictConfig">
+		name="com.littcore.codegen.model.DictConfig">
 		<map-to xml="dict-config" />
 		<field name="DictModuleList"
-			type="com.litt.core.codegen.model.DictModule"
+			type="com.littcore.codegen.model.DictModule"
 			collection="array">
 			<bind-xml name="module" />
 		</field>
 	</class>
 	
-  <class name="com.litt.core.codegen.model.DictModule">
+  <class name="com.littcore.codegen.model.DictModule">
   	<map-to xml="module" />
   	<field name="PackageName" type="java.lang.String" required="false">
     	<bind-xml name="package" node="attribute" />
@@ -20,13 +20,13 @@
   	<field name="TableName" type="java.lang.String">
     	<bind-xml name="table" node="attribute" />
     </field>        
-    <field name="DictParamTypeList" type="com.litt.core.codegen.model.DictParamType" collection="arraylist">
+    <field name="DictParamTypeList" type="com.littcore.codegen.model.DictParamType" collection="arraylist">
     	<bind-xml name="type"></bind-xml>
     </field> 
   </class>
   
   
-  <class name="com.litt.core.codegen.model.DictParamType" identity="DictType">
+  <class name="com.littcore.codegen.model.DictParamType" identity="DictType">
   	<map-to xml="type" />
   	<field name="EnumName" type="java.lang.String" required="false">
     	<bind-xml name="enum" node="attribute" />
@@ -40,12 +40,12 @@
     <field name="AlterMode" type="java.lang.Integer" required="false">
     	<bind-xml name="alterMode" node="attribute" />
     </field>
-    <field name="DictParamList" type="com.litt.core.codegen.model.DictParam" collection="arraylist">
+    <field name="DictParamList" type="com.littcore.codegen.model.DictParam" collection="arraylist">
     	<bind-xml name="param"/>
     </field>    
   </class>
   
-  <class name="com.litt.core.codegen.model.DictParam">
+  <class name="com.littcore.codegen.model.DictParam">
   	<map-to xml="param" />  	
   	<field name="DictValue" type="java.lang.String">
     	<bind-xml name="value" node="attribute" />
@@ -53,6 +53,9 @@
     <field name="DictContent" type="java.lang.String">
     	<bind-xml name="content" node="attribute" />
     </field>  
+    <field name="Position" type="java.lang.Integer" required="false">
+    	<bind-xml name="position" node="attribute" />
+    </field>
     <field name="Remark" type="java.lang.String" required="false">
     	<bind-xml name="remark" node="attribute" />
     </field>     

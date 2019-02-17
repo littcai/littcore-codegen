@@ -1,4 +1,4 @@
-package ${domain.parentPackageName}.${domain.packageName}.dao;
+package ${domain.parentPackageName}.${domain.packageName}.mapper;
 
 import org.slf4j.Logger;     
 import org.slf4j.LoggerFactory;  
