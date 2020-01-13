@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dict>
+
+  <module table="TENANT_MEMBER">
+    <type code="tenantMember-memberType" name="memberType" column="MEMBER_TYPE" title="Member Type">
+      <param value="1" content="一般用户" default="true" remark=""/>
+      <param value="2" content="外部客户" remark=""/>
+    </type>     
+    <type code="tenantMember-status" name="Status" column="STATUS">
+      <param value="0" content="尚未认证" default="true" remark=""/>
+      <param value="1" content="正常" />
+      <param value="-1" content="已锁定" remark=""/>
+      <param value="-2" content="已删除" remark=""/>
+    </type>
+  </module> 
+
+  <module table="COUNTRY">
+    <type code="country-continentCode" name="大洲" column="CONTINENT_CODE">     
+      <param value="AS" content="亚洲" default="true"/> 
+      <param value="OC" content="大洋洲"/>
+      <param value="ME" content="中东/西亚"/>
+      <param value="IP" content="印巴"/>
+      <param value="AF" content="非洲"/>
+      <param value="EU" content="欧洲"/>
+      <param value="NA" content="北美洲"/>
+      <param value="SA" content="南美洲"/>
+    </type> 
+  </module>   
+  
+  <!-- ********************************  ********************************  -->
+
+
+  <module table="SA_STORE">
+    <type code="saStore-grade" name="商户等级" column="GRADE">     
+      <param value="1" content="1星" default="true"/> 
+      <param value="2" content="2星"/>
+      <param value="3" content="3星"/>
+      <param value="4" content="4星"/>
+      <param value="5" content="5星"/>
+    </type> 
+
+    <type code="saStore-status" name="商户状态" column="STATUS">     
+      <param value="0" content="未开业" default="true"/> 
+      <param value="1" content="正常营业"/>
+      <param value="-1" content="歇业"/>
+      <param value="-2" content="停业"/>
+    </type> 
+  </module>   
+
+  <module table="SA_PRODUCT">
+    <type code="saProduct-status" name="商品状态" column="STATUS">     
+      <param value="0" content="未发布" default="true"/> 
+      <param value="1" content="已上架"/>
+      <param value="-1" content="已下架"/>
+    </type> 
+  </module>   
+
+  <module table="SA_BOOK">
+    <type code="saBook-status" name="预约状态" column="STATUS">     
+      <param value="1" content="待商户确认" default="true"/> 
+      <param value="2" content="待出行"/>
+      <param value="3" content="已完成待评论"/>
+      <param value="4" content="已评价"/>
+      <param value="-1" content="已取消"/>
+    </type> 
+  </module>   
+
+  <module table="SA_ACTIVITY">
+    <type code="saActivity-status" name="活动状态" column="STATUS">     
+      <param value="0" content="未发布" default="true"/> 
+      <param value="1" content="已上架"/>
+      <param value="-1" content="已下架"/>
+    </type> 
+  </module>  
+
+
+</dict>

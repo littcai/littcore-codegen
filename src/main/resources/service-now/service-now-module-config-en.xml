@@ -200,8 +200,46 @@
       <func code="query" title="查询" />
     </module>
 
-  </domain>  
+  </domain>
 
+  <domain code="bbs" title="用户社区" packageName="bbs" parentPackageName="com.littcore.cloud.boot" menuName="" descr="" isHide="false" isMenu="true"  icon="fa fa-users">
+    <module title="栏目设置" descr="社区" url="coTopicCatalog/index.do" menuName="栏目设置" tableName="CO_TOPIC_CATALOG" code="coTopicCatalog">
+      <func code="add" title="新增" />
+      <func code="edit" title="编辑" />
+      <func code="delete" title="删除" />
+      <func code="resume" title="恢复"/>
+      <func code="query" title="查询" />
+      <func code="lock" title="锁定" />
+      <func code="unlock" title="解锁" />
+    </module>
 
-  
+    <module title="社区文章" url="coTopic/index.do" menuName="社区" tableName="CO_TOPIC" code="coTopic">
+      <func code="add" title="新增" />
+      <func code="edit" title="编辑" />
+      <func code="delete" title="删除" />
+      <func code="resume" title="恢复"/>
+      <func code="query" title="查询" />
+      <func code="reply" title="回复" />
+      <func code="lock" title="锁定" />
+      <func code="unlock" title="解锁" />
+      <func code="audit" title="审核" />
+      <func code="deleteTrash" title="清空回收站" />
+      <func code="addFav" title="添加收藏"/>
+      <func code="deleteFav" title="取消收藏"/>
+    </module>
+
+    <module title="栏目管理员" url="coTopicManager/index.do" menuName="社区" tableName="CO_TOPIC_MANAGER" code="coTopicManager" isHide="true" isMenu="false">
+      <func code="edit" title="编辑" />
+      <func code="query" title="查询" />
+    </module>
+
+    <module title="文章评论" url="coTopicReply/index.do" menuName="社区" tableName="CO_TOPIC_REPLY" code="coTopicReply" isHide="true" isMenu="false">
+      <func code="add" title="新增" />
+      <func code="edit" title="编辑" />
+      <func code="delete" title="删除" />
+      <func code="query" title="查询" />
+    </module>
+
+  </domain>
+
 </config>
